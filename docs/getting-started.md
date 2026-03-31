@@ -1,0 +1,72 @@
+# Quick Start
+
+## 1. Install
+
+```bash
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+```
+
+## 2. Setup
+
+```bash
+# Interactive setup wizard -- configures provider, model, and first channel
+rsclaw onboard
+```
+
+Or if migrating from OpenClaw:
+
+```bash
+# Detects OpenClaw data, offers import
+rsclaw setup
+```
+
+## 3. Start Gateway
+
+```bash
+rsclaw gateway start
+```
+
+## 4. Verify
+
+```bash
+# Check status
+rsclaw status
+
+# Health check
+rsclaw doctor
+```
+
+## 5. Connect a Channel
+
+```bash
+# Configure a channel interactively
+rsclaw configure --section channels
+
+# Or login to WeChat directly
+rsclaw channels login wechat
+```
+
+## 6. Send a Message
+
+Send a message from the connected channel, and rsclaw will route it through the configured LLM and respond.
+
+You can also test locally:
+
+```bash
+# Send a test message
+curl -X POST http://localhost:18888/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model": "default", "messages": [{"role": "user", "content": "Hello!"}]}'
+```
+
+## What's Next?
+
+- [Installation options](/docs/installation) -- all platforms, from source, cross-compilation
+- [Configuration](/docs/configuration) -- JSON5 config reference
+- [Channels](/docs/channels) -- connect WeChat, Telegram, Discord, and 10 more
+- [LLM Providers](/docs/providers) -- configure Qwen, DeepSeek, OpenAI, Claude, etc.
+- [CLI Reference](/cli/) -- all commands and options
