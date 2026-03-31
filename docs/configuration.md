@@ -16,7 +16,7 @@ RsClaw uses [JSON5](https://json5.org/) format, supporting comments, trailing co
 ```json5
 {
   gateway: {
-    port: 18789,
+    port: 18888,
     bind: "loopback",   // "loopback" or "0.0.0.0"
   },
 

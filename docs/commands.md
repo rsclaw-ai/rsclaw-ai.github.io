@@ -44,6 +44,18 @@
 | `/cron list` | List cron jobs |
 | `/send <to> <msg>` | Send message to channel |
 
+## Context & Side Query
+
+| Command | Description |
+|---------|-------------|
+| `/ctx <text>` | Add persistent background context to current session |
+| `/ctx --ttl <N> <text>` | Add context that expires after N turns |
+| `/ctx --global <text>` | Add global context (all sessions) |
+| `/ctx --list` | List active context entries |
+| `/ctx --remove <id>` | Remove context entry by id |
+| `/ctx --clear` | Clear all context for this session |
+| `/btw <question>` | Side-channel quick query (bypasses agent queue, direct LLM call) |
+
 ## Memory
 
 | Command | Description |
