@@ -13,15 +13,15 @@ irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 
 ## 2. 设置
 
 ```bash
-# 交互式设置向导
-rsclaw onboard
+# 首次设置（检测 OpenClaw 数据并提供导入）
+rsclaw setup
 ```
 
-从 OpenClaw 迁移:
+然后运行交互式向导：
 
 ```bash
-# 自动检测 OpenClaw 数据并提供导入
-rsclaw setup
+# 配置提供商、模型和第一个通道
+rsclaw onboard
 ```
 
 ## 3. 启动网关
@@ -42,8 +42,9 @@ rsclaw doctor
 ```bash
 rsclaw configure --section channels
 
-# 或直接登录微信
-rsclaw channels login wechat
+# 或直接扫码登录
+rsclaw channels login wechat   # 微信扫码
+rsclaw channels login feishu   # 飞书扫码
 ```
 
 ## 下一步

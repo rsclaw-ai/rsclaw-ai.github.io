@@ -13,15 +13,15 @@ irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 
 ## 2. Setup
 
 ```bash
-# Interactive setup wizard -- configures provider, model, and first channel
-rsclaw onboard
+# First-time setup (detects OpenClaw data, offers import)
+rsclaw setup
 ```
 
-Or if migrating from OpenClaw:
+Then run the interactive wizard:
 
 ```bash
-# Detects OpenClaw data, offers import
-rsclaw setup
+# Configures provider, model, and first channel
+rsclaw onboard
 ```
 
 ## 3. Start Gateway
@@ -46,8 +46,9 @@ rsclaw doctor
 # Configure a channel interactively
 rsclaw configure --section channels
 
-# Or login to WeChat directly
-rsclaw channels login wechat
+# Or login directly
+rsclaw channels login wechat   # WeChat QR scan
+rsclaw channels login feishu   # Feishu/Lark QR scan
 ```
 
 ## 6. Send a Message

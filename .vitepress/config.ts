@@ -148,7 +148,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under MIT / Apache-2.0 License',
-      copyright: 'Copyright 2025-present RsClaw Contributors'
+      copyright: 'Copyright 2025 RsClaw Contributors'
     },
 
     editLink: {
