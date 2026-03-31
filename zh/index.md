@@ -27,7 +27,7 @@ features:
     details: 零 token 消耗，亚毫秒响应。完整 Shell 集成，支持管道、重定向。
   - icon: "🖥️"
     title: 跨平台
-    details: macOS、Linux、Windows。一行命令安装。~17MB 单文件，无运行时依赖。
+    details: macOS、Linux、Windows。一行命令安装。~12MB 单文件，无运行时依赖。
   - icon: "🔒"
     title: 安全优先
     details: 执行沙箱、权限 ACL、文件上传门控、敏感文件保护。50+ 内置拒绝规则。
@@ -61,6 +61,6 @@ cargo build --release
 |---|---|---|
 | **启动时间** | <100ms | 2-5s |
 | **内存占用** | ~20MB | ~1000MB+ |
-| **二进制体积** | ~17MB | ~300MB+ (node_modules) |
+| **二进制体积** | ~12MB | ~300MB+ (node_modules) |
 | **依赖数** | ~500 (Rust crates) | 1000+ (npm) |
 | **语言** | Rust | TypeScript/Node.js |

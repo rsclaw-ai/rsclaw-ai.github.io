@@ -64,7 +64,7 @@ cd rsclaw
 cargo build --release
 ```
 
-The binary is at `./target/release/rsclaw` (~17MB with LTO + strip).
+The binary is at `./target/release/rsclaw` (~12MB with LTO + strip).
 
 ### Optional Features
 

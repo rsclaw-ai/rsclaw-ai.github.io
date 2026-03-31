@@ -27,7 +27,7 @@ features:
     details: Zero token cost, sub-millisecond response. Local shell integration with pipes, redirects, and chaining.
   - icon: "🖥️"
     title: Cross-Platform
-    details: macOS, Linux, Windows. One-line install script. ~17MB single binary, no runtime dependencies.
+    details: macOS, Linux, Windows. One-line install script. ~12MB single binary, no runtime dependencies.
   - icon: "🔒"
     title: Security First
     details: Exec sandbox, permission ACL, file upload gates, sensitive file protection. 50+ built-in deny patterns.
@@ -70,6 +70,6 @@ cargo build --release
 |---|---|---|
 | **Startup time** | <100ms | 2-5s |
 | **Memory usage** | ~20MB idle | ~1000MB+ |
-| **Binary size** | ~17MB | ~300MB+ (node_modules) |
+| **Binary size** | ~12MB | ~300MB+ (node_modules) |
 | **Dependencies** | ~500 (Rust crates) | 1000+ (npm) |
 | **Language** | Rust | TypeScript/Node.js |
