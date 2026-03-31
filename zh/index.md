@@ -59,7 +59,7 @@ cargo build --release
 
 | | RsClaw | OpenClaw |
 |---|---|---|
-| **启动时间** | <100ms | 2-5s |
+| **启动时间** | ~26ms | 2-5s |
 | **内存占用** | ~20MB | ~1000MB+ |
 | **二进制体积** | ~12MB | ~300MB+ (node_modules) |
 | **依赖数** | ~500 (Rust crates) | 1000+ (npm) |

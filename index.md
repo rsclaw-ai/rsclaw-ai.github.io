@@ -68,7 +68,7 @@ cargo build --release
 
 | | RsClaw | OpenClaw |
 |---|---|---|
-| **Startup time** | <100ms | 2-5s |
+| **Startup time** | ~26ms | 2-5s |
 | **Memory usage** | ~20MB idle | ~1000MB+ |
 | **Binary size** | ~12MB | ~300MB+ (node_modules) |
 | **Dependencies** | ~500 (Rust crates) | 1000+ (npm) |
