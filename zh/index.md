@@ -41,12 +41,12 @@ features:
 ::: code-group
 
 ```bash [macOS / Linux]
-GITHUB_PROXY=https://gitfast.run/https:// \
+GITHUB_PROXY=https://gitfast.run \
   curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+$env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
 ```bash [从源码编译]
