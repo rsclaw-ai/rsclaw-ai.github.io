@@ -1,29 +1,29 @@
-# Configuration
+# 配置参考
 
-RsClaw uses [JSON5](https://json5.org/) format, supporting comments, trailing commas, and unquoted keys.
+RsClaw 使用 [JSON5](https://json5.org/) 格式，支持注释、尾逗号和无引号键名。
 
-## Config File Location
+## 配置文件位置
 
-| Priority | Source |
-|----------|--------|
-| 1 (highest) | `--config-path <file>` CLI flag |
+| 优先级 | 来源 |
+|--------|------|
+| 1（最高） | `--config-path <file>` CLI 参数 |
 | 2 | `$RSCLAW_BASE_DIR/rsclaw.json5` |
 | 3 | `~/.rsclaw/rsclaw.json5` |
-| 4 (lowest) | `.rsclaw.json5` (current directory) |
+| 4（最低） | `.rsclaw.json5`（当前目录） |
 
-## Example
+## 配置示例
 
 ```json5
 {
   gateway: {
     port: 18888,
-    bind: "loopback",   // "loopback" or "0.0.0.0"
+    bind: "loopback",   // "loopback" 或 "0.0.0.0"
   },
 
   models: {
     providers: {
       qwen: {
-        apiKey: "${DASHSCOPE_API_KEY}",  // env var substitution
+        apiKey: "${DASHSCOPE_API_KEY}",  // 环境变量替换
         baseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1",
       },
       openai: {
@@ -54,9 +54,9 @@ RsClaw uses [JSON5](https://json5.org/) format, supporting comments, trailing co
 }
 ```
 
-## Environment Variable Substitution
+## 环境变量替换
 
-Use `${VAR_NAME}` in any string value. Resolved at load time.
+在任意字符串值中使用 `${VAR_NAME}`，加载时自动替换。
 
 ```json5
 {
@@ -70,26 +70,26 @@ Use `${VAR_NAME}` in any string value. Resolved at load time.
 }
 ```
 
-## Multi-Instance
+## 多实例
 
 ```bash
-rsclaw --dev gateway run          # Uses ~/.rsclaw-dev (port 18889)
-rsclaw --profile test gateway run # Uses ~/.rsclaw-test
+rsclaw --dev gateway run          # 使用 ~/.rsclaw-dev（端口 18889）
+rsclaw --profile test gateway run # 使用 ~/.rsclaw-test
 ```
 
-## Provider Auto-Registration
+## 提供商自动注册
 
-LLM providers are auto-registered from:
-1. Config `models.providers` section
-2. Environment variables (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `DASHSCOPE_API_KEY`, etc.)
+LLM 提供商从以下来源自动注册：
+1. 配置文件 `models.providers` 段
+2. 环境变量（`OPENAI_API_KEY`、`ANTHROPIC_API_KEY`、`DASHSCOPE_API_KEY` 等）
 
-## Interactive Configuration
+## 交互式配置
 
 ```bash
-# Full configuration menu
+# 完整配置菜单
 rsclaw configure
 
-# Direct to a specific section
+# 直达指定分区
 rsclaw configure --section channels
 rsclaw configure --section providers
 rsclaw configure --section web_search

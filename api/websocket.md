@@ -1,16 +1,16 @@
-# WebSocket Protocol
+# WebSocket 协议
 
-RsClaw implements the OpenClaw WebSocket v3 protocol with 33+ methods. Compatible with the OpenClaw Control Panel (WebUI).
+RsClaw 实现了 OpenClaw WebSocket v3 协议，包含 33+ 方法。兼容 OpenClaw 控制面板。
 
-## Connection
+## 连接
 
 ```
 ws://localhost:18888/ws
 ```
 
-## Message Format
+## 消息格式
 
-All messages are JSON:
+所有消息为 JSON：
 
 ```json
 {
@@ -19,55 +19,55 @@ All messages are JSON:
 }
 ```
 
-## Methods
+## 方法列表
 
-### Session Management
+### 会话管理
 
-| Method | Direction | Description |
-|--------|-----------|-------------|
-| `chat` | Client -> Server | Send a chat message |
-| `chat_stream` | Server -> Client | Streaming response chunks |
-| `chat_end` | Server -> Client | End of response |
-| `clear_session` | Client -> Server | Clear current session |
-| `get_sessions` | Client -> Server | List all sessions |
-| `get_history` | Client -> Server | Get session message history |
-| `delete_session` | Client -> Server | Delete a session |
+| 方法 | 方向 | 说明 |
+|------|------|------|
+| `chat` | 客户端 -> 服务端 | 发送聊天消息 |
+| `chat_stream` | 服务端 -> 客户端 | 流式响应片段 |
+| `chat_end` | 服务端 -> 客户端 | 响应结束 |
+| `clear_session` | 客户端 -> 服务端 | 清除当前会话 |
+| `get_sessions` | 客户端 -> 服务端 | 列出所有会话 |
+| `get_history` | 客户端 -> 服务端 | 获取会话历史 |
+| `delete_session` | 客户端 -> 服务端 | 删除会话 |
 
-### Device & Pairing
+### 设备与配对
 
-| Method | Direction | Description |
-|--------|-----------|-------------|
-| `register_device` | Client -> Server | Register a new device |
-| `pair` | Client -> Server | Submit pairing code |
-| `get_devices` | Client -> Server | List paired devices |
-| `revoke_device` | Client -> Server | Revoke a paired device |
+| 方法 | 方向 | 说明 |
+|------|------|------|
+| `register_device` | 客户端 -> 服务端 | 注册设备 |
+| `pair` | 客户端 -> 服务端 | 提交配对码 |
+| `get_devices` | 客户端 -> 服务端 | 列出已配对设备 |
+| `revoke_device` | 客户端 -> 服务端 | 撤销设备 |
 
-### Configuration
+### 配置
 
-| Method | Direction | Description |
-|--------|-----------|-------------|
-| `get_config` | Client -> Server | Get current configuration |
-| `update_config` | Client -> Server | Update configuration |
-| `get_models` | Client -> Server | List available models |
-| `set_model` | Client -> Server | Change active model |
+| 方法 | 方向 | 说明 |
+|------|------|------|
+| `get_config` | 客户端 -> 服务端 | 获取当前配置 |
+| `update_config` | 客户端 -> 服务端 | 更新配置 |
+| `get_models` | 客户端 -> 服务端 | 列出模型 |
+| `set_model` | 客户端 -> 服务端 | 切换模型 |
 
-### Status
+### 状态
 
-| Method | Direction | Description |
-|--------|-----------|-------------|
-| `get_status` | Client -> Server | Gateway status |
-| `get_channels` | Client -> Server | Connected channels |
-| `health` | Client -> Server | Health check |
+| 方法 | 方向 | 说明 |
+|------|------|------|
+| `get_status` | 客户端 -> 服务端 | 网关状态 |
+| `get_channels` | 客户端 -> 服务端 | 已连接通道 |
+| `health` | 客户端 -> 服务端 | 健康检查 |
 
-### Agent Control
+### 智能体控制
 
-| Method | Direction | Description |
-|--------|-----------|-------------|
-| `spawn_agent` | Client -> Server | Spawn a sub-agent |
-| `list_agents` | Client -> Server | List running agents |
-| `kill_agent` | Client -> Server | Terminate an agent |
+| 方法 | 方向 | 说明 |
+|------|------|------|
+| `spawn_agent` | 客户端 -> 服务端 | 启动子智能体 |
+| `list_agents` | 客户端 -> 服务端 | 列出运行中的智能体 |
+| `kill_agent` | 客户端 -> 服务端 | 终止智能体 |
 
-## Streaming Example
+## 流式示例
 
 ```javascript
 const ws = new WebSocket('ws://localhost:18888/ws');
@@ -76,7 +76,7 @@ ws.onopen = () => {
   ws.send(JSON.stringify({
     type: 'chat',
     data: {
-      message: 'Hello!',
+      message: '你好！',
       session_id: 'my-session',
       stream: true,
     }
@@ -90,7 +90,7 @@ ws.onmessage = (event) => {
       process.stdout.write(msg.data.content);
       break;
     case 'chat_end':
-      console.log('\n[Done]');
+      console.log('\n[完成]');
       break;
   }
 };

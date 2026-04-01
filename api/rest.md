@@ -1,21 +1,21 @@
 # REST API
 
-OpenAI-compatible REST API for chat completions and model listing.
+OpenAI 兼容的 REST API。
 
-## Endpoints
+## 端点
 
 ### POST `/v1/chat/completions`
 
-Create a chat completion. Compatible with OpenAI SDK.
+创建聊天补全。兼容 OpenAI SDK。
 
-**Request:**
+**请求：**
 
 ```json
 {
   "model": "qwen/qwen-turbo",
   "messages": [
-    { "role": "system", "content": "You are a helpful assistant." },
-    { "role": "user", "content": "Hello!" }
+    { "role": "system", "content": "你是一个有帮助的助手。" },
+    { "role": "user", "content": "你好！" }
   ],
   "stream": false,
   "temperature": 0.7,
@@ -23,7 +23,7 @@ Create a chat completion. Compatible with OpenAI SDK.
 }
 ```
 
-**Response:**
+**响应：**
 
 ```json
 {
@@ -36,7 +36,7 @@ Create a chat completion. Compatible with OpenAI SDK.
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Hello! How can I help you?"
+        "content": "你好！有什么可以帮你的？"
       },
       "finish_reason": "stop"
     }
@@ -49,69 +49,33 @@ Create a chat completion. Compatible with OpenAI SDK.
 }
 ```
 
-**Streaming (SSE):**
+**流式输出（SSE）：**
 
-Set `"stream": true` to receive Server-Sent Events:
+设置 `"stream": true` 接收 Server-Sent Events：
 
 ```bash
 curl -N http://localhost:18888/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "default", "messages": [{"role": "user", "content": "Hello"}], "stream": true}'
-```
-
-```
-data: {"id":"chatcmpl-xxx","choices":[{"delta":{"content":"Hello"},"index":0}]}
-
-data: {"id":"chatcmpl-xxx","choices":[{"delta":{"content":"!"},"index":0}]}
-
-data: [DONE]
+  -d '{"model": "default", "messages": [{"role": "user", "content": "你好"}], "stream": true}'
 ```
 
 ### GET `/v1/models`
 
-List available models.
-
-**Response:**
-
-```json
-{
-  "object": "list",
-  "data": [
-    { "id": "qwen/qwen-turbo", "object": "model", "owned_by": "qwen" },
-    { "id": "openai/gpt-4o", "object": "model", "owned_by": "openai" }
-  ]
-}
-```
+列出可用模型。
 
 ### GET `/health`
 
-Health check endpoint.
-
-**Response:**
-
-```json
-{ "status": "ok" }
-```
+健康检查端点。
 
 ### GET `/status`
 
-Gateway status with uptime, connected channels, and active sessions.
+网关状态，包含运行时间、连接的通道和活跃会话。
 
 ### POST `/hooks/:name`
 
-Webhook ingress for custom integrations.
+Webhook 入口，用于自定义集成。
 
-**Request:**
-
-```json
-{
-  "text": "message content",
-  "from": "user-id",
-  "action": "chat"
-}
-```
-
-## Using with OpenAI SDK
+## 使用 OpenAI SDK
 
 ```python
 from openai import OpenAI
@@ -123,7 +87,7 @@ client = OpenAI(
 
 response = client.chat.completions.create(
     model="default",
-    messages=[{"role": "user", "content": "Hello!"}],
+    messages=[{"role": "user", "content": "你好！"}],
 )
 print(response.choices[0].message.content)
 ```
@@ -138,6 +102,6 @@ const client = new OpenAI({
 
 const response = await client.chat.completions.create({
   model: 'default',
-  messages: [{ role: 'user', content: 'Hello!' }],
+  messages: [{ role: 'user', content: '你好！' }],
 });
 ```

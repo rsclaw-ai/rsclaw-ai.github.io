@@ -1,28 +1,28 @@
-# LLM Providers
+# LLM 提供商
 
-RsClaw supports 15 pre-configured LLM providers, plus any OpenAI-compatible API.
+RsClaw 支持 15 个预配置 LLM 提供商，以及任何 OpenAI 兼容 API。
 
-## Pre-configured Providers
+## 预配置提供商
 
-| Provider | Base URL | Models |
-|----------|----------|--------|
-| **Qwen** (Alibaba) | dashscope.aliyuncs.com | qwen-turbo, qwen-plus, qwen-max |
-| **DeepSeek** | api.deepseek.com | deepseek-chat, deepseek-reasoner |
-| **Kimi** (Moonshot) | api.moonshot.cn | moonshot-v1-8k/32k/128k |
-| **Zhipu** (GLM) | open.bigmodel.cn | glm-4, glm-4v |
+| 提供商 | 基础 URL | 模型 |
+|--------|----------|------|
+| **通义千问**（阿里） | dashscope.aliyuncs.com | qwen-turbo、qwen-plus、qwen-max |
+| **DeepSeek** | api.deepseek.com | deepseek-chat、deepseek-reasoner |
+| **Kimi**（月之暗面） | api.moonshot.cn | moonshot-v1-8k/32k/128k |
+| **智谱**（GLM） | open.bigmodel.cn | glm-4、glm-4v |
 | **MiniMax** | api.minimax.chat | abab6.5 |
-| **GateRouter** | api.gaterouter.com | Multi-model routing |
-| **OpenRouter** | openrouter.ai/api | 100+ models |
-| **Anthropic** | api.anthropic.com | Claude 3/4 family |
-| **OpenAI** | api.openai.com | GPT-4o, o1, o3 |
+| **GateRouter** | api.gaterouter.com | 多模型路由 |
+| **OpenRouter** | openrouter.ai/api | 100+ 模型 |
+| **Anthropic** | api.anthropic.com | Claude 3/4 系列 |
+| **OpenAI** | api.openai.com | GPT-4o、o1、o3 |
 | **Google Gemini** | generativelanguage.googleapis.com | Gemini Pro/Ultra |
-| **xAI** (Grok) | api.x.ai | Grok-2 |
-| **Groq** | api.groq.com | Llama, Mixtral |
-| **SiliconFlow** | api.siliconflow.cn | Various open models |
-| **Ollama** | localhost:11434 | Local models |
-| **Custom** | user-defined | Any OpenAI-compatible API |
+| **xAI**（Grok） | api.x.ai | Grok-2 |
+| **Groq** | api.groq.com | Llama、Mixtral |
+| **硅基流动** | api.siliconflow.cn | 各类开源模型 |
+| **Ollama** | localhost:11434 | 本地模型 |
+| **自定义** | 用户定义 | 任何 OpenAI 兼容 API |
 
-## Configuration
+## 配置
 
 ```json5
 {
@@ -52,22 +52,22 @@ RsClaw supports 15 pre-configured LLM providers, plus any OpenAI-compatible API.
 }
 ```
 
-## Auto-Registration
+## 自动注册
 
-Providers are auto-registered from environment variables:
+通过环境变量自动注册提供商：
 
-| Env Var | Provider |
-|---------|----------|
+| 环境变量 | 提供商 |
+|----------|--------|
 | `OPENAI_API_KEY` | OpenAI |
 | `ANTHROPIC_API_KEY` | Anthropic |
-| `DASHSCOPE_API_KEY` | Qwen |
+| `DASHSCOPE_API_KEY` | 通义千问 |
 | `DEEPSEEK_API_KEY` | DeepSeek |
 | `GOOGLE_API_KEY` | Gemini |
 
-## Features
+## 特性
 
-- **Failover**: automatic retry with exponential backoff
-- **Model fallback chains**: primary -> fallback -> image fallback
-- **Thinking budget**: configurable thinking level (low/medium/high)
-- **Token tracking**: per-session and per-agent usage
-- **Vision auto-detect**: auto-detect image-capable models
+- **故障转移**：指数退避自动重试
+- **模型回退链**：primary -> fallback -> image fallback
+- **思维预算**：可配置思考级别（low/medium/high）
+- **Token 追踪**：按会话和智能体统计用量
+- **视觉检测**：自动检测支持图片的模型

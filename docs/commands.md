@@ -1,91 +1,91 @@
-# Pre-parsed Commands
+# 预解析命令
 
-40+ local commands that bypass the LLM entirely -- zero token cost, sub-millisecond response.
+40+ 本地命令，完全绕过 LLM -- 零 token 消耗，亚毫秒响应。
 
-## Shell / Exec
+## Shell / 执行
 
-| Command | Description |
-|---------|-------------|
-| `/run <cmd>` | Execute shell command via `sh -c` (pipes, redirects supported) |
-| `/sh <cmd>` / `/exec <cmd>` | Aliases for /run |
-| `$ <cmd>` | Shell shortcut |
-| `! <cmd>` | Shell shortcut |
-| `/ls [args]` | List files |
-| `/cat <file>` | Read file content |
-| `/read <file>` | Read file content (alias) |
-| `/write <path> <content>` | Write content to file |
-| `/find <pattern>` | Find files by name |
-| `/grep <pattern>` | Search file contents |
+| 命令 | 说明 |
+|------|------|
+| `/run <cmd>` | 通过 `sh -c` 执行（支持管道、重定向） |
+| `/sh <cmd>` / `/exec <cmd>` | /run 的别名 |
+| `$ <cmd>` | Shell 快捷方式 |
+| `! <cmd>` | Shell 快捷方式 |
+| `/ls [args]` | 列出文件 |
+| `/cat <file>` | 读取文件 |
+| `/read <file>` | 读取文件（别名） |
+| `/write <path> <content>` | 写入文件 |
+| `/find <pattern>` | 按名称查找文件 |
+| `/grep <pattern>` | 搜索文件内容 |
 
-## Web & Search
+## 网页搜索
 
-| Command | Description |
-|---------|-------------|
-| `/search <query>` | Web search (DuckDuckGo/Google/Bing) |
-| `/google <query>` | Web search (alias) |
-| `/fetch <url>` | Fetch and extract web page |
-| `/screenshot <url>` | Screenshot a web page |
-| `/ss` | Desktop screenshot |
+| 命令 | 说明 |
+|------|------|
+| `/search <query>` | 网页搜索（DuckDuckGo/Google/Bing） |
+| `/google <query>` | 网页搜索（别名） |
+| `/fetch <url>` | 获取并提取网页内容 |
+| `/screenshot <url>` | 网页截图 |
+| `/ss` | 桌面截图 |
 
-## System & Session
+## 系统与会话
 
-| Command | Description |
-|---------|-------------|
-| `/help` | Show all commands |
-| `/version` | Show version |
-| `/status` | Gateway status |
-| `/health` | Health check |
-| `/uptime` | Show uptime |
-| `/models` | List models |
-| `/model <name>` | Switch model |
-| `/clear` | Clear session |
-| `/reset` | Reset session |
-| `/history [n]` | Last N messages |
-| `/sessions` | List sessions |
-| `/cron list` | List cron jobs |
-| `/send <to> <msg>` | Send message to channel |
+| 命令 | 说明 |
+|------|------|
+| `/help` | 显示所有命令 |
+| `/version` | 显示版本号 |
+| `/status` | 网关状态 |
+| `/health` | 健康检查 |
+| `/uptime` | 运行时间 |
+| `/models` | 列出模型 |
+| `/model <name>` | 切换模型 |
+| `/clear` | 清除会话 |
+| `/reset` | 重置会话 |
+| `/history [n]` | 最近 N 条消息 |
+| `/sessions` | 列出会话 |
+| `/cron list` | 列出定时任务 |
+| `/send <to> <msg>` | 发送消息 |
 
-## Context & Side Query
+## 上下文与侧查询
 
-| Command | Description |
-|---------|-------------|
-| `/ctx <text>` | Add persistent background context to current session |
-| `/ctx --ttl <N> <text>` | Add context that expires after N turns |
-| `/ctx --global <text>` | Add global context (all sessions) |
-| `/ctx --list` | List active context entries |
-| `/ctx --remove <id>` | Remove context entry by id |
-| `/ctx --clear` | Clear all context for this session |
-| `/btw <question>` | Side-channel quick query (bypasses agent queue, direct LLM call) |
+| 命令 | 说明 |
+|------|------|
+| `/ctx <text>` | 添加持久背景上下文到当前会话 |
+| `/ctx --ttl <N> <text>` | 添加上下文（N 轮后过期） |
+| `/ctx --global <text>` | 添加全局上下文（所有会话） |
+| `/ctx --list` | 列出活跃上下文 |
+| `/ctx --remove <id>` | 按 ID 移除上下文 |
+| `/ctx --clear` | 清除当前会话所有上下文 |
+| `/btw <问题>` | 侧通道快速查询（跳过智能体队列，直接 LLM 调用） |
 
-## Memory
+## 记忆
 
-| Command | Description |
-|---------|-------------|
-| `/remember <text>` | Save to long-term memory |
-| `/recall <query>` | Search memory |
+| 命令 | 说明 |
+|------|------|
+| `/remember <text>` | 保存到长期记忆 |
+| `/recall <query>` | 搜索记忆 |
 
-## Upload Limits
+## 上传限制
 
-| Command | Description |
-|---------|-------------|
-| `/get_upload_size` | Show file size limit |
-| `/set_upload_size <MB>` | Set file size limit (runtime) |
-| `/get_upload_chars` | Show text char limit |
-| `/set_upload_chars <n>` | Set text char limit (runtime) |
-| `/config_upload_size <MB>` | Set file size limit (persistent) |
-| `/config_upload_chars <n>` | Set text char limit (persistent) |
+| 命令 | 说明 |
+|------|------|
+| `/get_upload_size` | 查看文件大小限制 |
+| `/set_upload_size <MB>` | 设置文件大小限制（运行时） |
+| `/get_upload_chars` | 查看文本字符限制 |
+| `/set_upload_chars <n>` | 设置文本字符限制（运行时） |
+| `/config_upload_size <MB>` | 设置文件大小限制（永久） |
+| `/config_upload_chars <n>` | 设置文本字符限制（永久） |
 
-## Skills
+## 技能
 
-| Command | Description |
-|---------|-------------|
-| `/skill install <name>` | Install a skill from registry |
-| `/skill list` | List installed skills |
-| `/skill search <query>` | Search skill registries |
+| 命令 | 说明 |
+|------|------|
+| `/skill install <name>` | 从仓库安装技能 |
+| `/skill list` | 列出已安装技能 |
+| `/skill search <query>` | 搜索技能仓库 |
 
-## Help
+## 帮助
 
-| Command | Description |
-|---------|-------------|
-| `/help` | Show all available commands |
-| `/?` | Alias for /help |
+| 命令 | 说明 |
+|------|------|
+| `/help` | 显示所有可用命令 |
+| `/?` | /help 的别名 |

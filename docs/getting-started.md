@@ -1,73 +1,57 @@
-# Quick Start
+# 快速开始
 
-## 1. Install
+## 1. 安装
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+GITHUB_PROXY=https://gitfast.run \
+  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 
 # Windows (PowerShell)
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+$env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
-## 2. Setup
+## 2. 设置
 
 ```bash
-# First-time setup (detects OpenClaw data, offers import)
+# 首次设置（检测 OpenClaw 数据并提供导入）
 rsclaw setup
 ```
 
-Then run the interactive wizard:
+然后运行交互式向导：
 
 ```bash
-# Configures provider, model, and first channel
+# 配置提供商、模型和第一个通道
 rsclaw onboard
 ```
 
-## 3. Start Gateway
+## 3. 启动网关
 
 ```bash
 rsclaw gateway start
 ```
 
-## 4. Verify
+## 4. 验证
 
 ```bash
-# Check status
 rsclaw status
-
-# Health check
 rsclaw doctor
 ```
 
-## 5. Connect a Channel
+## 5. 连接通道
 
 ```bash
-# Configure a channel interactively
 rsclaw configure --section channels
 
-# Or login directly
-rsclaw channels login wechat   # WeChat QR scan
-rsclaw channels login feishu   # Feishu/Lark QR scan
+# 或直接扫码登录
+rsclaw channels login wechat   # 微信扫码
+rsclaw channels login feishu   # 飞书扫码
 ```
 
-## 6. Send a Message
+## 下一步
 
-Send a message from the connected channel, and rsclaw will route it through the configured LLM and respond.
-
-You can also test locally:
-
-```bash
-# Send a test message
-curl -X POST http://localhost:18888/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model": "default", "messages": [{"role": "user", "content": "Hello!"}]}'
-```
-
-## What's Next?
-
-- [Installation options](/docs/installation) -- all platforms, from source, cross-compilation
-- [Configuration](/docs/configuration) -- JSON5 config reference
-- [Channels](/docs/channels) -- connect WeChat, Telegram, Discord, and 10 more
-- [LLM Providers](/docs/providers) -- configure Qwen, DeepSeek, OpenAI, Claude, etc.
-- [CLI Reference](/cli/) -- all commands and options
+- [安装选项](/docs/installation) -- 全平台、源码编译、交叉编译
+- [配置参考](/docs/configuration) -- JSON5 配置文件
+- [消息通道](/docs/channels) -- 接入微信、Telegram、Discord 等
+- [LLM 提供商](/docs/providers) -- 配置通义千问、DeepSeek、OpenAI 等
+- [CLI 参考](/cli/) -- 全部命令和选项

@@ -1,44 +1,44 @@
-# Built-in Tools
+# 内置工具
 
-RsClaw includes 32 built-in tools that agents can invoke.
+RsClaw 内置 32 个工具供智能体调用。
 
-## Tool Categories
+## 工具分类
 
-| Category | Tools |
-|----------|-------|
-| **File** | `read`, `write` |
-| **Shell** | `exec` (with safety rules) |
-| **Memory** | `memory_search`, `memory_get`, `memory_put`, `memory_delete` |
-| **Web** | `web_search`, `web_fetch`, `web_browser`, `computer_use` |
-| **Media** | `image`, `pdf`, `tts` |
-| **Messaging** | `message`, `telegram_actions`, `discord_actions`, `slack_actions`, `whatsapp_actions`, `feishu_actions`, `weixin_actions`, `qq_actions`, `dingtalk_actions` |
-| **Session** | `sessions_send`, `sessions_list`, `sessions_history`, `session_status` |
-| **System** | `cron`, `gateway`, `subagents`, `agent_spawn`, `agent_list` |
+| 分类 | 工具 |
+|------|------|
+| **文件** | `read`、`write` |
+| **Shell** | `exec`（带安全规则） |
+| **记忆** | `memory_search`、`memory_get`、`memory_put`、`memory_delete` |
+| **网页** | `web_search`、`web_fetch`、`web_browser`、`computer_use` |
+| **媒体** | `image`、`pdf`、`tts` |
+| **消息** | `message`、`telegram_actions`、`discord_actions`、`slack_actions`、`whatsapp_actions`、`feishu_actions`、`weixin_actions`、`qq_actions`、`dingtalk_actions` |
+| **会话** | `sessions_send`、`sessions_list`、`sessions_history`、`session_status` |
+| **系统** | `cron`、`gateway`、`subagents`、`agent_spawn`、`agent_list` |
 
-## Web Search
+## 网页搜索
 
-Supported engines: DuckDuckGo (default), Brave, Google, Bing.
+支持搜索引擎：DuckDuckGo（默认）、Brave、Google、Bing。
 
-Configure via `rsclaw configure --section web_search`.
+通过 `rsclaw configure --section web_search` 配置。
 
-## CDP Browser Automation
+## CDP 浏览器自动化
 
-Built-in headless Chrome control via Chrome DevTools Protocol:
+内置 headless Chrome 控制，通过 Chrome DevTools Protocol：
 
-- **20 actions**: open, snapshot, click, fill, type, select, check/uncheck, scroll, screenshot, pdf, back, forward, reload, get_text, get_url, get_title, wait, evaluate, cookies
-- **Accessibility tree snapshots** with `@e1`, `@e2` element references
-- **Memory-adaptive**: auto-limits Chrome instances based on system RAM
-- **Auto-lifecycle**: 5-minute idle timeout, crash detection + auto-restart
+- **20 个操作**：open、snapshot、click、fill、type、select、check/uncheck、scroll、screenshot、pdf、back、forward、reload、get_text、get_url、get_title、wait、evaluate、cookies
+- **无障碍树快照**：带 `@e1`、`@e2` 元素引用
+- **内存自适应**：根据系统内存自动限制 Chrome 实例数
+- **自动生命周期**：5 分钟空闲超时、崩溃检测 + 自动重启
 
 ## computer_use
 
-Native desktop control: screenshots, mouse clicks, keyboard input. No browser required.
+原生桌面控制：截图、鼠标点击、键盘输入。无需浏览器。
 
-## File Upload Processing
+## 文件上传处理
 
-Supported formats:
-- **Documents**: DOCX, XLSX, PPTX (native extraction, no external tools)
-- **PDF**: text extraction via pdf-extract
-- **Images**: auto-resize to 1024px, JPEG compression
-- **Audio**: SILK decode, opus, MP3, WAV, OGG (via symphonia + ffmpeg fallback)
-- **Video**: audio track extraction for transcription
+支持格式：
+- **文档**：DOCX、XLSX、PPTX（原生提取，无需外部工具）
+- **PDF**：通过 pdf-extract 提取文本
+- **图片**：自动缩放至 1024px、JPEG 压缩
+- **音频**：SILK 解码、opus、MP3、WAV、OGG（symphonia + ffmpeg 回退）
+- **视频**：提取音轨用于语音转写

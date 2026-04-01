@@ -2,74 +2,66 @@
 layout: home
 hero:
   name: RsClaw
-  text: Multi-Agent AI Gateway
-  tagline: 10x faster startup, 10x smaller footprint, zero Node.js dependency. OpenClaw compatible.
+  text: 多智能体 AI 网关
+  tagline: 10 倍启动速度、10 倍更小体积、零 Node.js 依赖。无缝兼容 OpenClaw。
   actions:
     - theme: brand
-      text: Quick Start
+      text: 快速开始
       link: /docs/getting-started
     - theme: alt
-      text: Download
+      text: 下载
       link: /download
     - theme: alt
       text: GitHub
-      link: https://github.com/rsclaw-ai/rsclaw
+      link: https://gitfast.run/https://github.com/rsclaw-ai/rsclaw
 
 features:
   - icon: "🔌"
-    title: 13+ Messaging Channels
-    details: WeChat, Feishu, DingTalk, Telegram, Discord, Slack, WhatsApp, QQ, and more. One config, all connected.
+    title: 13+ 消息通道
+    details: 微信、飞书、钉钉、Telegram、Discord、Slack、WhatsApp、QQ 等。一个配置，全部连接。
   - icon: "🧠"
-    title: 15 LLM Providers
-    details: Qwen, DeepSeek, OpenAI, Claude, Gemini, Groq, Ollama... Out of the box with failover and model fallback.
+    title: 15 个 LLM 提供商
+    details: 通义千问、DeepSeek、OpenAI、Claude、Gemini、Groq、Ollama... 开箱即用，自动故障转移。
   - icon: "⚡"
-    title: 40+ Pre-parsed Commands
-    details: Zero token cost, sub-millisecond response. Local shell integration with pipes, redirects, and chaining.
+    title: 40+ 预解析命令
+    details: 零 token 消耗，亚毫秒响应。完整 Shell 集成，支持管道、重定向。
   - icon: "🖥️"
-    title: Cross-Platform
-    details: macOS, Linux, Windows. One-line install script. ~12MB single binary, no runtime dependencies.
+    title: 跨平台
+    details: macOS、Linux、Windows。一行命令安装。~12MB 单文件，无运行时依赖。
   - icon: "🔒"
-    title: Security First
-    details: Exec sandbox, permission ACL, file upload gates, sensitive file protection. 50+ built-in deny patterns.
+    title: 安全优先
+    details: 执行沙箱、权限 ACL、文件上传门控、敏感文件保护。50+ 内置拒绝规则。
   - icon: "🔄"
-    title: Seamless Migration
-    details: Drop-in replacement for OpenClaw. Read existing config unchanged. Stop old, start new, zero modification.
+    title: 无缝迁移
+    details: OpenClaw 直接替换。读取现有配置，停旧启新，零修改。
 ---
 
-<style>
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #e8590c 30%, #f76707);
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #e8590c50 50%, #f7670750 50%);
-  --vp-home-hero-image-filter: blur(44px);
-}
-</style>
-
-## Install
+## 安装
 
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+GITHUB_PROXY=https://gitfast.run \
+  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+$env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
-```bash [From Source]
-git clone https://github.com/rsclaw-ai/rsclaw.git && cd rsclaw
+```bash [从源码编译]
+git clone https://gitfast.run/https://github.com/rsclaw-ai/rsclaw.git && cd rsclaw
 cargo build --release
 ```
 
 :::
 
-## Performance Comparison
+## 性能对比
 
 | | RsClaw | OpenClaw |
 |---|---|---|
-| **Startup time** | ~26ms | 2-5s |
-| **Memory usage** | ~20MB idle | ~1000MB+ |
-| **Binary size** | ~12MB | ~300MB+ (node_modules) |
-| **Dependencies** | ~500 (Rust crates) | 1000+ (npm) |
-| **Language** | Rust | TypeScript/Node.js |
+| **启动时间** | ~26ms | 2-5s |
+| **内存占用** | ~20MB | ~1000MB+ |
+| **二进制体积** | ~12MB | ~300MB+ (node_modules) |
+| **依赖数** | ~500 (Rust crates) | 1000+ (npm) |
+| **语言** | Rust | TypeScript/Node.js |

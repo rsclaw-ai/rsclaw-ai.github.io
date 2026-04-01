@@ -1,25 +1,26 @@
-# Download
+# 下载
 
-## Quick Install
+## 快速安装
 
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+GITHUB_PROXY=https://gitfast.run \
+  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+$env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
 :::
 
-## Pre-built Binaries
+## 预编译二进制
 
-Download the latest release from [GitHub Releases](https://github.com/rsclaw-ai/rsclaw/releases/latest).
+从 [GitHub Releases](https://gitfast.run/https://github.com/rsclaw-ai/rsclaw/releases/latest) 下载最新版本。
 
-| Platform | Architecture | File |
-|----------|-------------|------|
+| 平台 | 架构 | 文件 |
+|------|------|------|
 | macOS | ARM64 (Apple Silicon) | `rsclaw-*-aarch64-apple-darwin.tar.gz` |
 | macOS | x86_64 (Intel) | `rsclaw-*-x86_64-apple-darwin.tar.gz` |
 | Linux | x86_64 | `rsclaw-*-x86_64-unknown-linux-musl.tar.gz` |
@@ -27,37 +28,18 @@ Download the latest release from [GitHub Releases](https://github.com/rsclaw-ai/
 | Windows | x86_64 | `rsclaw-*-x86_64-pc-windows-msvc.zip` |
 | Windows | ARM64 | `rsclaw-*-aarch64-pc-windows-msvc.zip` |
 
-### Manual Install
+## 从源码编译
 
 ```bash
-# macOS / Linux
-tar xzf rsclaw-*.tar.gz
-chmod +x rsclaw
-sudo mv rsclaw /usr/local/bin/
-
-# Verify
-rsclaw --version
-```
-
-```powershell
-# Windows
-Expand-Archive rsclaw-*.zip -DestinationPath .
-.\rsclaw.exe --version
-```
-
-## From Source
-
-```bash
-# Requires Rust 1.91+
-git clone https://github.com/rsclaw-ai/rsclaw.git
+# 需要 Rust 1.91+
+git clone https://gitfast.run/https://github.com/rsclaw-ai/rsclaw.git
 cd rsclaw
 cargo build --release
-# Binary at ./target/release/rsclaw
 ```
 
-## Verify Checksums
+## 校验
 
-Each release includes `SHA256SUMS.txt`:
+每个 Release 附带 `SHA256SUMS.txt`:
 
 ```bash
 sha256sum -c SHA256SUMS.txt

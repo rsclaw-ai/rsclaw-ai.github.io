@@ -1,45 +1,43 @@
-# Messaging Channels
+# 消息通道
 
-RsClaw supports 13 messaging channels plus a custom webhook handler.
+RsClaw 支持 13 个消息通道及自定义 Webhook。
 
-## Supported Channels
+## 支持的通道
 
-| # | Channel | Protocol | Notes |
-|---|---------|----------|-------|
-| 1 | **WeChat Personal** | ilink long-poll | QR scan login. Voice STT, image/file/video, SILK decode. |
-| 2 | **Feishu / Lark** | WebSocket | OAuth scan or `appId` + `appSecret`. Event dedup, rich text. |
-| 3 | **WeCom** | AI Bot WebSocket | `botId` + `secret`. Auto-reconnect, markdown replies. |
-| 4 | **QQ Bot** | WebSocket Gateway | `appId` + `appSecret`. Group/C2C/Guild, sandbox mode. |
-| 5 | **DingTalk** | Stream Mode WS | `appKey` + `appSecret`. DM + group, voice transcription. |
-| 6 | **Telegram** | HTTP long-poll | `botToken`. DM + group (@mention), voice/image/file/video. |
-| 7 | **Matrix** | HTTP /sync | `homeserver` + `accessToken`. Optional E2EE. |
-| 8 | **Discord** | Gateway WebSocket | Bot token. Guild/DM, reaction notifications, streaming edits. |
-| 9 | **Slack** | Socket Mode WS | `botToken` + `appToken`. No public URL needed. |
-| 10 | **WhatsApp** | Webhook (Cloud API) | Meta Cloud API. Webhook verification. |
-| 11 | **Signal** | signal-cli JSON-RPC | Phone number + signal-cli. End-to-end encrypted. |
-| 12 | **LINE** | Webhook | `channelAccessToken` + `channelSecret`. |
-| 13 | **Zalo** | Webhook | `accessToken` + `oaSecret`. Official Account API. |
-| -- | **Custom Webhook** | POST | Send JSON to `/hooks/{name}`. |
+| # | 通道 | 协议 | 说明 |
+|---|------|------|------|
+| 1 | **微信（个人号）** | ilink 长轮询 | 扫码登录。语音 STT、图片/文件/视频、SILK 解码。 |
+| 2 | **飞书 / Lark** | WebSocket | OAuth 扫码或 `appId` + `appSecret`。事件去重、富文本。 |
+| 3 | **企业微信** | AI Bot WebSocket | `botId` + `secret`。自动重连、Markdown 回复。 |
+| 4 | **QQ 机器人** | WebSocket Gateway | `appId` + `appSecret`。群/C2C/频道、沙箱模式。 |
+| 5 | **钉钉** | Stream Mode WS | `appKey` + `appSecret`。私聊 + 群聊、语音转写。 |
+| 6 | **Telegram** | HTTP 长轮询 | `botToken`。私聊 + 群聊（@提及）、语音/图片/文件/视频。 |
+| 7 | **Matrix** | HTTP /sync | `homeserver` + `accessToken`。可选 E2EE。 |
+| 8 | **Discord** | Gateway WebSocket | Bot token。Guild/DM、反应通知、流式编辑。 |
+| 9 | **Slack** | Socket Mode WS | `botToken` + `appToken`。无需公网 URL。 |
+| 10 | **WhatsApp** | Webhook (Cloud API) | Meta Cloud API。Webhook 验证。 |
+| 11 | **Signal** | signal-cli JSON-RPC | 手机号 + signal-cli。端到端加密。 |
+| 12 | **LINE** | Webhook | `channelAccessToken` + `channelSecret`。 |
+| 13 | **Zalo** | Webhook | `accessToken` + `oaSecret`。官方账号 API。 |
+| -- | **自定义 Webhook** | POST | 发送 JSON 到 `/hooks/{name}`。 |
 
-## Common Features
+## 通用功能
 
-All channels support:
+所有通道均支持：
 
-- **DM/Group policy**: open, pairing, allowlist, or disabled
-- **Pairing codes**: 6-character, 1-hour TTL
-- **Text chunking**: code-fence protection, auto-split long messages
-- **Message retry**: exponential backoff
-- **Streaming modes**: off, partial, block, progress
-- **File upload**: two-layer confirmation (size + token)
-- **Health monitoring**: connection status tracking
+- **DM/群组策略**：open、pairing、allowlist、disabled
+- **配对码**：6 字符，1 小时有效期
+- **文本分块**：代码块保护、长消息自动拆分
+- **消息重试**：指数退避
+- **流式模式**：off、partial、block、progress
+- **文件上传**：两层确认（体积 + token）
+- **健康监控**：连接状态追踪
 
-## Adding a Channel
+## 添加通道
 
 ```bash
-# Interactive
+# 交互式
 rsclaw configure --section channels
-
-# Or manually in config
 ```
 
 ```json5
@@ -56,33 +54,33 @@ rsclaw configure --section channels
 }
 ```
 
-## WeChat Login
+## 微信登录
 
 ```bash
 rsclaw channels login wechat
-# Scan the QR code with WeChat
+# 用微信扫描二维码
 ```
 
-## DM Pairing
+## DM 配对
 
-When `dmPolicy` is set to `"pairing"` (recommended default), new users must enter a 6-character pairing code (1-hour TTL):
+`dmPolicy` 设为 `"pairing"`（推荐默认值）时，新用户需输入 6 位配对码（1 小时有效）：
 
 ```bash
-# Generate a pairing code
+# 生成配对码
 rsclaw pairing pair
 
-# List active pairings
+# 列出活跃配对
 rsclaw pairing list
 
-# Revoke a pairing
+# 撤销配对
 rsclaw pairing revoke <device-id>
 ```
 
-Users send the pairing code as their first message. Once paired, no further pairing is needed.
+用户将配对码作为第一条消息发送。配对成功后无需再次配对。
 
-## Environment Variables
+## 环境变量
 
-All string values in channel config support `${VAR}` substitution:
+通道配置中所有字符串值支持 `${VAR}` 替换：
 
 ```json5
 {
