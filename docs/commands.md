@@ -7,6 +7,7 @@
 | Command | Description |
 |---------|-------------|
 | `/run <cmd>` | Execute shell command via `sh -c` (pipes, redirects supported) |
+| `/sh <cmd>` / `/exec <cmd>` | Aliases for /run |
 | `$ <cmd>` | Shell shortcut |
 | `! <cmd>` | Shell shortcut |
 | `/ls [args]` | List files |
@@ -74,14 +75,17 @@
 | `/config_upload_size <MB>` | Set file size limit (persistent) |
 | `/config_upload_chars <n>` | Set text char limit (persistent) |
 
-## Chinese Natural Language
+## Skills
 
 | Command | Description |
 |---------|-------------|
-| `搜索 <query>` | Web search |
-| `截屏` / `截图` | Desktop screenshot |
-| `查天气 <city>` | Weather |
-| `几点了` | Current time |
-| `今天几号` | Current date |
-| `计算 <expr>` | Calculate |
-| `查IP` | Public IP |
+| `/skill install <name>` | Install a skill from registry |
+| `/skill list` | List installed skills |
+| `/skill search <query>` | Search skill registries |
+
+## Help
+
+| Command | Description |
+|---------|-------------|
+| `/help` | Show all available commands |
+| `/?` | Alias for /help |
