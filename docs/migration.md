@@ -26,6 +26,29 @@ rsclaw gateway start
 - **导入**（推荐）-- 将配置、工作区和会话历史复制到 `~/.rsclaw/`。OpenClaw 数据只读，不会被修改。
 - **全新开始** -- 忽略 OpenClaw 数据，从零开始。
 
+## 自动迁移内容
+
+`rsclaw migrate` 自动处理：
+
+| 数据 | 处理方式 |
+|------|----------|
+| 配置文件 | 路径重写 + 端口改为 18888 |
+| Workspace 文件 | 直接复制（IDENTITY/SOUL/USER/AGENTS/TOOLS 等） |
+| 长期记忆 (MEMORY.md) | 按标题拆分写入向量数据库，按需语义召回 |
+| SQLite 记忆 (brain.db) | 读取写入向量数据库 |
+| 已安装技能 | 直接复制 |
+| 会话历史 (JSONL) | 导入到 redb |
+
+## 配置改进
+
+| | RsClaw | OpenClaw |
+|---|---|---|
+| Agent-Channel 关系 | 一个 agent 服务多个 channel | 一个 agent 绑定一个 channel |
+| 配置方式 | 直接在 agent 配置 channels | 需要额外 bindings 映射 |
+| 记忆存储 | 向量数据库，按需语义召回 | 文件或 SQLite，全量加载 |
+
+OpenClaw 的 bindings 自动转换为 rsclaw 的 per-agent channels 配置。
+
 ## 兼容性
 
 | 功能 | 状态 |

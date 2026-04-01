@@ -2,14 +2,18 @@
 
 ## 1. 安装
 
-```bash
-# macOS / Linux
+::: code-group
+
+```bash [macOS / Linux]
 GITHUB_PROXY=https://gitfast.run \
   curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+```
 
-# Windows (PowerShell)
+```powershell [Windows]
 $env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
+
+:::
 
 ## 2. 设置
 
@@ -25,20 +29,39 @@ rsclaw setup
 rsclaw onboard
 ```
 
-## 3. 启动网关
+## 3. 从 OpenClaw 迁移（可选）
+
+如果已有 OpenClaw 安装，一条命令完成迁移：
+
+```bash
+rsclaw migrate
+```
+
+自动迁移内容：
+- 配置文件（路径自动重写，端口改为 18888）
+- 所有 agent 的 workspace 文件（IDENTITY.md、SOUL.md、USER.md 等）
+- 长期记忆（MEMORY.md + memory/*.md 拆分写入向量数据库，按需召回）
+- 已安装技能（10+ skills 直接复制）
+- 会话历史（JSONL 导入）
+
+::: tip 配置对比
+OpenClaw 每个 agent 只能绑定一个 channel（通过 bindings），rsclaw 每个 agent 可以同时服务多个 channel，配置更简洁。迁移后运行 `rsclaw configure` 按需调整。
+:::
+
+## 4. 启动网关
 
 ```bash
 rsclaw gateway start
 ```
 
-## 4. 验证
+## 5. 验证
 
 ```bash
 rsclaw status
 rsclaw doctor
 ```
 
-## 5. 连接通道
+## 6. 连接通道
 
 ```bash
 rsclaw configure --section channels
