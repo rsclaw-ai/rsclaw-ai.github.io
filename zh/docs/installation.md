@@ -7,11 +7,11 @@
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+curl -fsSL https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+irm https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
 :::
@@ -39,7 +39,7 @@ curl -fsSL .../install.sh | bash -s -- --prefix /opt/rsclaw/bin
 
 ### 手动下载
 
-从 [GitHub Releases](https://github.com/rsclaw-ai/rsclaw/releases/latest) 下载，解压后添加到 PATH。
+从 [GitHub Releases](https://gitfast.run/github.com/rsclaw-ai/rsclaw/releases/latest) 下载，解压后添加到 PATH。
 
 ## 从源码编译
 
@@ -59,7 +59,7 @@ brew install protobuf
 sudo apt-get install -y protobuf-compiler
 
 # 编译
-git clone https://github.com/rsclaw-ai/rsclaw.git
+git clone https://gitfast.run/github.com/rsclaw-ai/rsclaw.git
 cd rsclaw
 cargo build --release
 ```

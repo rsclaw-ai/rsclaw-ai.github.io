@@ -5,18 +5,18 @@
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+curl -fsSL https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+irm https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
 :::
 
 ## 预编译二进制
 
-从 [GitHub Releases](https://github.com/rsclaw-ai/rsclaw/releases/latest) 下载最新版本。
+从 [GitHub Releases](https://gitfast.run/github.com/rsclaw-ai/rsclaw/releases/latest) 下载最新版本。
 
 | 平台 | 架构 | 文件 |
 |------|------|------|
@@ -31,7 +31,7 @@ irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 
 
 ```bash
 # 需要 Rust 1.91+
-git clone https://github.com/rsclaw-ai/rsclaw.git
+git clone https://gitfast.run/github.com/rsclaw-ai/rsclaw.git
 cd rsclaw
 cargo build --release
 ```

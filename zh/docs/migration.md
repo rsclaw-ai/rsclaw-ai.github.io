@@ -9,7 +9,7 @@ RsClaw 是 OpenClaw 的直接替代品，迁移不到一分钟。
 openclaw gateway stop
 
 # 2. 安装 RsClaw
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+curl -fsSL https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 
 # 3. 设置（自动检测 OpenClaw 数据）
 rsclaw setup

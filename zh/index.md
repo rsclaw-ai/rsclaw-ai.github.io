@@ -13,7 +13,7 @@ hero:
       link: /zh/download
     - theme: alt
       text: GitHub
-      link: https://github.com/rsclaw-ai/rsclaw
+      link: https://gitfast.run/github.com/rsclaw-ai/rsclaw
 
 features:
   - icon: "🔌"
@@ -41,15 +41,15 @@ features:
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+curl -fsSL https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-irm https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+irm https://gitfast.run/raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
 ```
 
 ```bash [从源码编译]
-git clone https://github.com/rsclaw-ai/rsclaw.git && cd rsclaw
+git clone https://gitfast.run/github.com/rsclaw-ai/rsclaw.git && cd rsclaw
 cargo build --release
 ```
 
