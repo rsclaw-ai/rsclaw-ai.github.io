@@ -63,6 +63,34 @@ rsclaw channels login wechat
 # Scan the QR code with WeChat
 ```
 
-## Channel-Specific Docs
+## DM Pairing
 
-Detailed setup instructions for each channel will be available in dedicated pages.
+When `dmPolicy` is set to `"pairing"` (recommended default), new users must enter a 6-character pairing code (1-hour TTL):
+
+```bash
+# Generate a pairing code
+rsclaw pairing pair
+
+# List active pairings
+rsclaw pairing list
+
+# Revoke a pairing
+rsclaw pairing revoke <device-id>
+```
+
+Users send the pairing code as their first message. Once paired, no further pairing is needed.
+
+## Environment Variables
+
+All string values in channel config support `${VAR}` substitution:
+
+```json5
+{
+  channels: {
+    telegram: {
+      botToken: "${TELEGRAM_BOT_TOKEN}",
+      dmPolicy: "pairing",
+    },
+  },
+}
+```

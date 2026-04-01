@@ -60,3 +60,35 @@ rsclaw configure --section channels
 rsclaw channels login wechat
 # 用微信扫描二维码
 ```
+
+## DM 配对
+
+`dmPolicy` 设为 `"pairing"`（推荐默认值）时，新用户需输入 6 位配对码（1 小时有效）：
+
+```bash
+# 生成配对码
+rsclaw pairing pair
+
+# 列出活跃配对
+rsclaw pairing list
+
+# 撤销配对
+rsclaw pairing revoke <device-id>
+```
+
+用户将配对码作为第一条消息发送。配对成功后无需再次配对。
+
+## 环境变量
+
+通道配置中所有字符串值支持 `${VAR}` 替换：
+
+```json5
+{
+  channels: {
+    telegram: {
+      botToken: "${TELEGRAM_BOT_TOKEN}",
+      dmPolicy: "pairing",
+    },
+  },
+}
+```
