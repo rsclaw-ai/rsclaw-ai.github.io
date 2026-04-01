@@ -41,7 +41,8 @@ features:
 ::: code-group
 
 ```bash [macOS / Linux]
-curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+GITHUB_PROXY=https://gitfast.run/https:// \
+  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
