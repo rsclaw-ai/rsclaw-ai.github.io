@@ -1,4 +1,4 @@
-# \u4E0B\u8F7D
+# 下载
 
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -78,47 +78,47 @@ function assetSize(pattern) { const a = findAsset(pattern); if (!a?.size) return
 onMounted(() => { detectPlatform(); fetchRelease() })
 </script>
 
-<div v-if="loading" style="text-align:center;padding:40px;color:#888">\u52A0\u8F7D\u4E2D...</div>
+<div v-if="loading" style="text-align:center;padding:40px;color:#888">加载中...</div>
 
 <div v-if="!loading" style="background:linear-gradient(135deg,#1a1c22,#141618);border:1px solid rgba(249,115,22,0.15);border-radius:16px;padding:32px;margin:20px 0;text-align:center">
-  <div style="font-size:12px;color:#4a4858;margin-bottom:6px;letter-spacing:1px">\u68C0\u6D4B\u5230: {{ detectedOS }} {{ detectedArch }}</div>
+  <div style="font-size:12px;color:#4a4858;margin-bottom:6px;letter-spacing:1px">检测到: {{ detectedOS }} {{ detectedArch }}</div>
   <div style="font-size:11px;color:#2e2c3a;margin-bottom:20px;font-family:monospace">{{ version }}</div>
 
   <div style="display:inline-flex;background:#0f1013;border-radius:8px;padding:3px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.05)">
     <button @click="activeTab='app'" :style="{padding:'7px 20px',borderRadius:'6px',border:'none',fontSize:'12px',fontWeight:600,cursor:'pointer',background:activeTab==='app'?'#f97316':'transparent',color:activeTab==='app'?'#fff':'#4a4858'}">
-      \u684C\u9762\u5E94\u7528
+      桌面应用
     </button>
     <button @click="activeTab='cli'" :style="{padding:'7px 20px',borderRadius:'6px',border:'none',fontSize:'12px',fontWeight:600,cursor:'pointer',background:activeTab==='cli'?'#f97316':'transparent',color:activeTab==='cli'?'#fff':'#4a4858'}">
-      \u547D\u4EE4\u884C (CLI)
+      命令行 (CLI)
     </button>
   </div>
 
   <div v-if="activeTab==='app' && appKey">
     <a :href="assetUrl(APP_PLATFORMS[appKey]?.pattern)" style="display:inline-block;padding:14px 40px;background:#f97316;color:#fff;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(249,115,22,0.3)">
-      \u4E0B\u8F7D {{ detectedOS }} \u684C\u9762\u7248
+      下载 {{ detectedOS }} 桌面版
     </a>
     <div style="margin-top:8px;font-size:10px;color:#2e2c3a;font-family:monospace">{{ APP_PLATFORMS[appKey]?.pattern }} &middot; {{ assetSize(APP_PLATFORMS[appKey]?.pattern) }}</div>
-    <div style="margin-top:4px;font-size:11px;color:#4a4858">\u542B GUI \u56FE\u5F62\u754C\u9762 + CLI \u547D\u4EE4\u884C</div>
+    <div style="margin-top:4px;font-size:11px;color:#4a4858">含 GUI 图形界面 + CLI 命令行</div>
   </div>
 
   <div v-if="activeTab==='cli' && cliKey">
     <a :href="assetUrl(cliKey)" style="display:inline-block;padding:14px 40px;background:#f97316;color:#fff;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(249,115,22,0.3)">
-      \u4E0B\u8F7D {{ detectedOS }} CLI
+      下载 {{ detectedOS }} CLI
     </a>
     <div style="margin-top:8px;font-size:10px;color:#2e2c3a;font-family:monospace">rsclaw-{{ version }}-{{ cliKey }} &middot; {{ assetSize(cliKey) }}</div>
   </div>
 
   <div style="margin-top:14px;font-size:11px;color:#4a4858">
-    \u4E0D\u662F\u4F60\u7684\u5E73\u53F0\uFF1F<a href="#all-downloads" style="color:#f97316">\u67E5\u770B\u6240\u6709\u4E0B\u8F7D</a>
+    不是你的平台？<a href="#all-downloads" style="color:#f97316">查看所有下载</a>
     &nbsp;&middot;&nbsp;
     <span v-if="detectedOS==='macOS'">
-      <a v-if="appKey==='macos-aarch64'" @click.prevent="appKey='macos-x86_64';cliKey='x86_64-apple-darwin'" href="#" style="color:#f97316">\u5207\u6362\u5230 Intel \u7248\u672C</a>
-      <a v-else @click.prevent="appKey='macos-aarch64';cliKey='aarch64-apple-darwin'" href="#" style="color:#f97316">\u5207\u6362\u5230 Apple Silicon \u7248\u672C</a>
+      <a v-if="appKey==='macos-aarch64'" @click.prevent="appKey='macos-x86_64';cliKey='x86_64-apple-darwin'" href="#" style="color:#f97316">切换到 Intel 版本</a>
+      <a v-else @click.prevent="appKey='macos-aarch64';cliKey='aarch64-apple-darwin'" href="#" style="color:#f97316">切换到 Apple Silicon 版本</a>
     </span>
   </div>
 </div>
 
-## \u5FEB\u901F\u5B89\u88C5 (CLI)
+## 快速安装 (CLI)
 
 ::: code-group
 
@@ -133,9 +133,9 @@ $env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.git
 
 :::
 
-## \u6240\u6709\u4E0B\u8F7D {#all-downloads}
+## 所有下载 {#all-downloads}
 
-### \u684C\u9762\u5E94\u7528 (GUI + CLI)
+### 桌面应用 (GUI + CLI)
 
 <div v-if="!loading && version" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0">
   <a v-for="(info, key) in APP_PLATFORMS" :key="key" :href="assetUrl(info.pattern)"
@@ -148,7 +148,7 @@ $env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.git
   </a>
 </div>
 
-### CLI \u547D\u4EE4\u884C
+### CLI 命令行
 
 <div v-if="!loading && version" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0">
   <a v-for="(info, target) in CLI_PLATFORMS" :key="target" :href="assetUrl(target)"
@@ -161,18 +161,18 @@ $env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.git
   </a>
 </div>
 
-## \u4ECE\u6E90\u7801\u7F16\u8BD1
+## 从源码编译
 
 ```bash
-# \u9700\u8981 Rust 1.91+
+# 需要 Rust 1.91+
 git clone https://gitfast.run/https://github.com/rsclaw-ai/rsclaw.git
 cd rsclaw
 cargo build --release
 ```
 
-## \u6821\u9A8C
+## 校验
 
-\u6BCF\u4E2A Release \u9644\u5E26 `SHA256SUMS.txt`:
+每个 Release 附带 `SHA256SUMS.txt`:
 
 ```bash
 sha256sum -c SHA256SUMS.txt
