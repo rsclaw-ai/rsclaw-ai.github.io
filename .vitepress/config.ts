@@ -143,7 +143,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/rsclaw-logo.svg',
     siteTitle: 'RsClaw',
 
     socialLinks: [
