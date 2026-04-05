@@ -50,7 +50,7 @@ function detectPlatform() {
     const isArm = ua.includes('aarch64') || ua.includes('arm64')
     detectedArch.value = isArm ? 'ARM64' : 'x86_64'
     appKey.value = isArm ? 'linux-arm64' : 'linux-x64'
-    cliKey.value = isArm ? 'aarch64-unknown-linux-musl' : 'x86_64-unknown-linux-musl'
+    cliKey.value = isArm ? 'aarch64-unknown-linux-gnu' : 'x86_64-unknown-linux-gnu'
   }
 }
 
@@ -62,7 +62,7 @@ async function fetchRelease() {
       if (resp.ok) data = await resp.json()
     } catch {}
     if (!data?.tag_name) {
-      const resp = await fetch('https://api.github.com/repos/rsclaw-ai/rsclaw/releases/latest')
+      const resp = await fetch('https://gitfast.run/https://api.github.com/repos/rsclaw-ai/rsclaw/releases/latest')
       data = await resp.json()
     }
     version.value = data.tag_name || ''
@@ -72,7 +72,7 @@ async function fetchRelease() {
 }
 
 function findAsset(pattern) { return allAssets.value.find(a => a.name?.includes(pattern)) }
-function assetUrl(pattern) { return findAsset(pattern)?.browser_download_url || 'https://github.com/rsclaw-ai/rsclaw/releases/latest' }
+function assetUrl(pattern) { const url = findAsset(pattern)?.browser_download_url; return url ? 'https://gitfast.run/' + url : 'https://gitfast.run/https://github.com/rsclaw-ai/rsclaw/releases/latest' }
 function assetSize(pattern) { const a = findAsset(pattern); if (!a?.size) return ''; return `${(a.size / 1024 / 1024).toFixed(1)} MB` }
 
 onMounted(() => { detectPlatform(); fetchRelease() })
