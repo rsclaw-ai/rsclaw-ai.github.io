@@ -54,11 +54,12 @@ function detectPlatform() {
 
 async function fetchRelease() {
   try {
-    const resp = await fetch('https://gitfast.run/https://api.github.com/repos/rsclaw-ai/rsclaw/releases?per_page=10')
+    const resp = await fetch('https://app.rsclaw.ai/api/version')
     const releases = await resp.json()
-    const cliRelease = releases.find(r => r.tag_name?.startsWith('v') && !r.tag_name?.startsWith('app-'))
-    const appRelease = releases.find(r => r.tag_name?.startsWith('app-v'))
-    version.value = cliRelease?.tag_name || ''
+    const list = Array.isArray(releases) ? releases : [releases]
+    const cliRelease = list.find(r => r.tag_name?.startsWith('v') && !r.tag_name?.startsWith('app-'))
+    const appRelease = list.find(r => r.tag_name?.startsWith('app-v'))
+    version.value = cliRelease?.tag_name || appRelease?.tag_name || ''
     const assets = [...(cliRelease?.assets || []), ...(appRelease?.assets || [])]
     allAssets.value = assets
   } catch {}
@@ -66,7 +67,7 @@ async function fetchRelease() {
 }
 
 function findAsset(pattern) { return allAssets.value.find(a => a.name?.includes(pattern)) }
-function assetUrl(pattern) { const url = findAsset(pattern)?.browser_download_url; return url ? 'https://gitfast.run/' + url : 'https://gitfast.run/https://github.com/rsclaw-ai/rsclaw/releases/latest' }
+function assetUrl(pattern) { return findAsset(pattern)?.browser_download_url || 'https://github.com/rsclaw-ai/rsclaw/releases/latest' }
 function assetSize(pattern) { const a = findAsset(pattern); if (!a?.size) return ''; return `${(a.size / 1024 / 1024).toFixed(1)} MB` }
 
 onMounted(() => { detectPlatform(); fetchRelease() })

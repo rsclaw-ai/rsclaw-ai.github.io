@@ -54,11 +54,12 @@ function detectPlatform() {
 
 async function fetchRelease() {
   try {
-    const resp = await fetch('https://api.github.com/repos/rsclaw-ai/rsclaw/releases?per_page=10')
+    const resp = await fetch('https://app.rsclaw.ai/api/version')
     const releases = await resp.json()
-    const cliRelease = releases.find(r => r.tag_name?.startsWith('v') && !r.tag_name?.startsWith('app-'))
-    const appRelease = releases.find(r => r.tag_name?.startsWith('app-v'))
-    version.value = cliRelease?.tag_name || ''
+    const list = Array.isArray(releases) ? releases : [releases]
+    const cliRelease = list.find(r => r.tag_name?.startsWith('v') && !r.tag_name?.startsWith('app-'))
+    const appRelease = list.find(r => r.tag_name?.startsWith('app-v'))
+    version.value = cliRelease?.tag_name || appRelease?.tag_name || ''
     const assets = [...(cliRelease?.assets || []), ...(appRelease?.assets || [])]
     allAssets.value = assets
   } catch {}
