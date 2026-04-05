@@ -113,6 +113,14 @@ onMounted(() => { detectPlatform(); fetchRelease() })
   </div>
 </div>
 
+::: tip macOS 用户提示
+首次打开桌面版可能提示"已损坏"，这是因为应用未经 Apple 签名。请在终端执行：
+```bash
+xattr -cr /Applications/RsClaw.app
+```
+或右键点击应用选择"打开"。
+:::
+
 ## 快速安装 (CLI)
 
 ::: code-group

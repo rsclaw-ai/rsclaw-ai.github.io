@@ -113,6 +113,14 @@ onMounted(() => { detectPlatform(); fetchRelease() })
   </div>
 </div>
 
+::: tip macOS Users
+The desktop app is not Apple-signed yet. If macOS says it's "damaged", run in Terminal:
+```bash
+xattr -cr /Applications/RsClaw.app
+```
+Or right-click the app and select "Open".
+:::
+
 ## Quick Install (CLI)
 
 ::: code-group
