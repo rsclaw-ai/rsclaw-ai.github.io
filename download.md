@@ -11,12 +11,10 @@ const detectedArch = ref('')
 const activeTab = ref('app')
 
 const APP_PLATFORMS = {
-  'macos-aarch64': { os: 'macOS', arch: 'ARM64 (Apple Silicon)', pattern: 'aarch64.dmg' },
-  'macos-x86_64': { os: 'macOS', arch: 'x86_64 (Intel)', pattern: 'x86_64.dmg' },
-  'windows-x64': { os: 'Windows', arch: 'x86_64', pattern: 'x64-setup.exe' },
-  'windows-arm64': { os: 'Windows', arch: 'ARM64', pattern: 'arm64-setup.exe' },
-  'linux-x64': { os: 'Linux', arch: 'x86_64', pattern: 'amd64.AppImage' },
-  'linux-arm64': { os: 'Linux', arch: 'ARM64', pattern: 'arm64.AppImage' },
+  'macos-aarch64': { os: 'macOS', arch: 'ARM64 (Apple Silicon)', pattern: 'aarch64-apple-darwin.dmg' },
+  'macos-x86_64': { os: 'macOS', arch: 'x86_64 (Intel)', pattern: 'x86_64-apple-darwin.dmg' },
+  'windows-x64': { os: 'Windows', arch: 'x86_64', pattern: 'x86_64-pc-windows-msvc.msi' },
+  'linux-x64': { os: 'Linux', arch: 'x86_64', pattern: 'x86_64-unknown-linux-gnu.deb' },
 }
 
 const CLI_PLATFORMS = {
@@ -56,17 +54,13 @@ function detectPlatform() {
 
 async function fetchRelease() {
   try {
-    let data
-    try {
-      const resp = await fetch('https://app.rsclaw.ai/api/version', { signal: AbortSignal.timeout(5000) })
-      if (resp.ok) data = await resp.json()
-    } catch {}
-    if (!data?.tag_name) {
-      const resp = await fetch('https://gitfast.run/https://api.github.com/repos/rsclaw-ai/rsclaw/releases/latest')
-      data = await resp.json()
-    }
-    version.value = data.tag_name || ''
-    allAssets.value = data.assets || []
+    const resp = await fetch('https://gitfast.run/https://api.github.com/repos/rsclaw-ai/rsclaw/releases?per_page=10')
+    const releases = await resp.json()
+    const cliRelease = releases.find(r => r.tag_name?.startsWith('v') && !r.tag_name?.startsWith('app-'))
+    const appRelease = releases.find(r => r.tag_name?.startsWith('app-v'))
+    version.value = cliRelease?.tag_name || ''
+    const assets = [...(cliRelease?.assets || []), ...(appRelease?.assets || [])]
+    allAssets.value = assets
   } catch {}
   loading.value = false
 }
