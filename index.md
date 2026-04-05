@@ -39,6 +39,22 @@ features:
     details: OpenClaw 直接替换。读取现有配置，停旧启新，零修改。
 ---
 
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #e8590c 30%, #f76707);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #e8590c50 50%, #f7670750 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+.VPHero .text {
+  font-size: 36px !important;
+  line-height: 1.2 !important;
+}
+.VPHero .main {
+  max-width: 560px !important;
+}
+</style>
+
 ## 安装
 
 ::: code-group

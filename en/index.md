@@ -46,6 +46,13 @@ features:
   --vp-home-hero-image-background-image: linear-gradient(-45deg, #e8590c50 50%, #f7670750 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
+.VPHero .text {
+  font-size: 36px !important;
+  line-height: 1.2 !important;
+}
+.VPHero .main {
+  max-width: 560px !important;
+}
 </style>
 
 ## Install
