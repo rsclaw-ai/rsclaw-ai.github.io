@@ -10,10 +10,7 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /docs/getting-started
-    - theme: alt
-      text: Download
-      link: /download
+      link: /en/download
     - theme: alt
       text: GitHub
       link: https://github.com/rsclaw-ai/rsclaw
