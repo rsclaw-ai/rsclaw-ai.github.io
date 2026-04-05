@@ -20,6 +20,10 @@ export default defineConfig({
       label: '中文',
       lang: 'zh-CN',
       themeConfig: {
+        outline: { label: '本页目录' },
+        darkModeSwitchLabel: '外观',
+        returnToTopLabel: '返回顶部',
+        lastUpdatedText: '最后更新',
         nav: [
           { text: '文档', link: '/docs/getting-started' },
           { text: 'API', link: '/api/' },
