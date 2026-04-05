@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: RsClaw
-  text: 多智能体 AI 网关
-  tagline: 10 倍启动速度、10 倍更小体积、零 Node.js 依赖。无缝兼容 OpenClaw。
+  text: High-performance AI Gateway
+  tagline: Native OpenClaw A2A orchestration. 10x faster, 10x smaller, zero Node.js.
   actions:
     - theme: brand
       text: 快速开始

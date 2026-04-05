@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: RsClaw
-  text: Multi-Agent AI Gateway
-  tagline: 10x faster startup, 10x smaller footprint, zero Node.js dependency. OpenClaw compatible.
+  text: High-performance AI Gateway
+  tagline: Native OpenClaw A2A orchestration. 10x faster, 10x smaller, zero Node.js.
   actions:
     - theme: brand
       text: Quick Start

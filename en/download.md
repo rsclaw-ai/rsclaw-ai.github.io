@@ -24,8 +24,8 @@ const CLI_PLATFORMS = {
   'x86_64-apple-darwin': { os: 'macOS', arch: 'x86_64 (Intel)' },
   'x86_64-pc-windows-msvc': { os: 'Windows', arch: 'x86_64' },
   'aarch64-pc-windows-msvc': { os: 'Windows', arch: 'ARM64' },
-  'x86_64-unknown-linux-musl': { os: 'Linux', arch: 'x86_64' },
-  'aarch64-unknown-linux-musl': { os: 'Linux', arch: 'ARM64' },
+  'x86_64-unknown-linux-gnu': { os: 'Linux', arch: 'x86_64' },
+  'aarch64-unknown-linux-gnu': { os: 'Linux', arch: 'ARM64' },
 }
 
 const appKey = ref('')

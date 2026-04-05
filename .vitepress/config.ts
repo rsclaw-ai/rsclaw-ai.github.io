@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: 'RsClaw',
-  description: '高性能多智能体 AI 网关，无缝兼容 OpenClaw',
+  description: 'High-performance AI gateway with native OpenClaw A2A orchestration',
   lang: 'zh-CN',
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -11,8 +11,8 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#e8590c' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'RsClaw' }],
-    ['meta', { property: 'og:title', content: 'RsClaw - 高性能多智能体 AI 网关' }],
-    ['meta', { property: 'og:description', content: '10 倍启动速度、10 倍更小体积、零 Node.js 依赖。无缝兼容 OpenClaw。' }],
+    ['meta', { property: 'og:title', content: 'RsClaw - High-performance AI Gateway' }],
+    ['meta', { property: 'og:description', content: 'High-performance AI gateway with native OpenClaw A2A orchestration.' }],
   ],
 
   locales: {
@@ -155,7 +155,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Released under MIT / Apache-2.0 License',
+      message: 'Released under AGPL-3.0 License',
       copyright: 'Copyright 2026 RsClaw Contributors'
     },
 
