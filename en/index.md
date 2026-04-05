@@ -4,6 +4,9 @@ hero:
   name: RsClaw
   text: High-performance AI Gateway
   tagline: Native OpenClaw A2A orchestration. 10x faster, 10x smaller, zero Node.js.
+  image:
+    src: /logo.svg
+    alt: RsClaw
   actions:
     - theme: brand
       text: Quick Start
