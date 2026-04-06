@@ -114,11 +114,14 @@ onMounted(() => { detectPlatform(); fetchRelease() })
 </div>
 
 ::: tip macOS 用户提示
-首次打开桌面版可能提示"已损坏"，这是因为应用未经 Apple 签名。请在终端执行：
+首次打开桌面版可能提示"已损坏"，这是因为应用未经 Apple 签名。请在终端依次执行：
 ```bash
-xattr -cr /Applications/RsClaw.app
+# 1. 允许任何来源的应用（系统设置 > 隐私与安全性）
+sudo spctl --master-disable
+
+# 2. 移除隔离属性
+sudo xattr -rd com.apple.quarantine /Applications/RsClaw.app
 ```
-或右键点击应用选择"打开"。
 :::
 
 ## 快速安装 (CLI)
