@@ -9,7 +9,7 @@ RsClaw is a drop-in replacement for OpenClaw. Migration takes under a minute.
 openclaw gateway stop
 
 # 2. Install RsClaw
-curl -fsSL https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+curl -fsSL https://app.rsclaw.ai/scripts/install.sh | bash
 
 # 3. Setup (auto-detects OpenClaw data)
 rsclaw setup

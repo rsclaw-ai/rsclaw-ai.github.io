@@ -10,7 +10,7 @@ openclaw gateway stop
 
 # 2. 安装 RsClaw
 GITHUB_PROXY=https://gitfast.run \
-  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+  curl -fsSL https://app.rsclaw.ai/scripts/install.sh | bash
 
 # 3. 设置（自动检测 OpenClaw 数据）
 rsclaw setup

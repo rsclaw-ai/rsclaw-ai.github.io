@@ -6,11 +6,11 @@
 
 ```bash [macOS / Linux]
 GITHUB_PROXY=https://gitfast.run \
-  curl -fsSL https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.sh | bash
+  curl -fsSL https://app.rsclaw.ai/scripts/install.sh | bash
 ```
 
 ```powershell [Windows]
-$env:GITHUB_PROXY="https://gitfast.run"; irm https://gitfast.run/https://raw.githubusercontent.com/rsclaw-ai/rsclaw/main/scripts/install.ps1 | iex
+$env:GITHUB_PROXY="https://gitfast.run"; irm https://app.rsclaw.ai/scripts/install.ps1 | iex
 ```
 
 :::
