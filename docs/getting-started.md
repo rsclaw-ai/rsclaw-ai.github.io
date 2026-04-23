@@ -1,6 +1,25 @@
 # 快速开始
 
-## 1. 安装
+## 方式一：桌面应用（推荐新用户）
+
+最快的开始方式——下载安装，扫码登录，开箱即用。
+
+1. 前往 [下载页面](/download)，下载适合你系统的桌面应用
+2. 安装并打开螃蟹 AI
+3. 配置 AI 模型提供商（通义千问、DeepSeek、OpenAI 等）
+4. 接入消息通道（微信 / 飞书扫码登录等），即刻开始对话
+
+::: tip 提示
+桌面版已包含 CLI 命令行工具，安装后即可在终端使用 `rsclaw` 命令。
+:::
+
+---
+
+## 方式二：CLI 命令行安装
+
+适合开发者和服务器部署场景。
+
+### 1. 安装
 
 ::: code-group
 
@@ -15,7 +34,7 @@ $env:GITHUB_PROXY="https://gitfast.run"; irm https://app.rsclaw.ai/scripts/insta
 
 :::
 
-## 2. 设置
+### 2. 设置
 
 ```bash
 # 首次设置（检测 OpenClaw 数据并提供导入）
@@ -29,7 +48,7 @@ rsclaw setup
 rsclaw onboard
 ```
 
-## 3. 从 OpenClaw 迁移（可选）
+### 3. 从 OpenClaw 迁移（可选）
 
 如果已有 OpenClaw 安装，一条命令完成迁移：
 
@@ -48,20 +67,20 @@ rsclaw migrate
 OpenClaw 每个 agent 只能绑定一个 channel（通过 bindings），rsclaw 每个 agent 可以同时服务多个 channel，配置更简洁。迁移后运行 `rsclaw configure` 按需调整。
 :::
 
-## 4. 启动网关
+### 4. 启动网关
 
 ```bash
 rsclaw gateway start
 ```
 
-## 5. 验证
+### 5. 验证
 
 ```bash
 rsclaw status
 rsclaw doctor
 ```
 
-## 6. 连接通道
+### 6. 连接通道
 
 ```bash
 rsclaw configure --section channels

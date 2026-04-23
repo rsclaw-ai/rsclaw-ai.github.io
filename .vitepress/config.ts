@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'RsClaw',
-  description: 'High-performance AI gateway with native OpenClaw A2A orchestration',
+  title: '螃蟹 AI (RsClaw)',
+  description: '拥有长期记忆与自我学习能力的 AI 智能体引擎，兼容 OpenClaw，你的 AI 不再健忘，越用越懂你',
   lang: 'zh-CN',
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -11,8 +11,35 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#e8590c' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'RsClaw' }],
-    ['meta', { property: 'og:title', content: 'RsClaw - High-performance AI Gateway' }],
-    ['meta', { property: 'og:description', content: 'High-performance AI gateway with native OpenClaw A2A orchestration.' }],
+    ['meta', { property: 'og:title', content: '螃蟹 AI (RsClaw) - AI 智能体引擎' }],
+    ['meta', { property: 'og:description', content: '基于 Rust 从零构建的 AI 智能体引擎，原生三层持久化记忆（redb + tantivy + hnsw_rs），支持 OpenClaw 一键迁移、A2A 跨机编排、四种 Agent 后端，全平台桌面版一键安装。' }],
+    // One-shot language auto-redirect for non-Chinese browsers.
+    // Runs before Vue mounts. Only redirects on the very first visit,
+    // then the user can freely use the language switcher.
+    ['script', {}, `
+      (function () {
+        try {
+          var path = window.location.pathname;
+          // Already on /en/* — record preference and exit.
+          if (path === '/en' || path === '/en/' || path.indexOf('/en/') === 0) {
+            localStorage.setItem('lang-redirected', 'en');
+            return;
+          }
+          // Already auto-redirected before — don't do it again.
+          if (localStorage.getItem('lang-redirected')) return;
+          // Chinese browsers: stay on root, remember choice.
+          var lang = (navigator.language || '').toLowerCase();
+          if (lang.indexOf('zh') === 0) {
+            localStorage.setItem('lang-redirected', 'zh');
+            return;
+          }
+          // Non-Chinese browser, first visit: redirect to /en equivalent once.
+          localStorage.setItem('lang-redirected', 'en');
+          var target = '/en' + (path === '/' ? '/' : path) + window.location.search + window.location.hash;
+          window.location.replace(target);
+        } catch (_) { /* localStorage may be disabled — fail silently */ }
+      })();
+    `],
   ],
 
   locales: {
@@ -22,13 +49,26 @@ export default defineConfig({
       themeConfig: {
         outline: { label: '本页目录' },
         darkModeSwitchLabel: '外观',
+        lightModeSwitchTitle: '切换到浅色主题',
+        darkModeSwitchTitle: '切换到深色主题',
         returnToTopLabel: '返回顶部',
         lastUpdatedText: '最后更新',
+        sidebarMenuLabel: '菜单',
+        langMenuLabel: '切换语言',
+        docFooter: {
+          prev: '上一页',
+          next: '下一页',
+        },
+        editLink: {
+          pattern: 'https://github.com/rsclaw-ai/rsclaw-ai.github.io/edit/main/:path',
+          text: '在 GitHub 上编辑此页',
+        },
         nav: [
           { text: '文档', link: '/docs/getting-started' },
           { text: 'API', link: '/api/' },
           { text: 'CLI', link: '/cli/' },
           { text: '下载', link: '/download' },
+          { text: '交流群', link: '/community' },
         ],
         sidebar: {
           '/docs/': [
@@ -87,6 +127,7 @@ export default defineConfig({
           { text: 'API', link: '/en/api/' },
           { text: 'CLI', link: '/en/cli/' },
           { text: 'Download', link: '/en/download' },
+          { text: 'Community', link: '/en/community' },
         ],
         sidebar: {
           '/en/docs/': [
@@ -159,7 +200,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Released under AGPL-3.0 License',
+      message: 'Released under MIT OR Apache-2.0 License',
       copyright: 'Copyright 2026 RsClaw Contributors'
     },
 

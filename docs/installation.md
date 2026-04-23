@@ -1,6 +1,42 @@
 # 安装指南
 
-## 预编译二进制（推荐）
+## 桌面应用（推荐）
+
+桌面版包含 GUI 图形界面 + CLI 命令行，下载即用，无需配置环境。
+
+### 下载安装
+
+前往 [下载页面](/download) 获取适合你平台的安装包：
+
+| 平台 | 格式 | 说明 |
+|------|------|------|
+| macOS | `.dmg` | 拖入 Applications 文件夹即可 |
+| Windows | `.msi` | 双击安装，自动添加 PATH |
+| Linux | `.deb` | `sudo dpkg -i rsclaw_*.deb` |
+
+### 安装后首次启动
+
+1. 打开螃蟹 AI 桌面应用
+2. 配置 AI 模型提供商（选择通义千问、DeepSeek、OpenAI 等，填入 API Key）
+3. 接入消息通道（微信 / 飞书扫码登录，或配置 Telegram、Discord 等）
+
+::: warning Windows 用户
+安装时 SmartScreen 可能弹出蓝色警告"Windows 已保护你的电脑"，点击 **"更多信息"** → **"仍要运行"** 即可正常安装。
+:::
+
+::: warning macOS 用户
+首次打开可能提示"已损坏"，这是因为应用未经 Apple 签名。请在终端执行：
+```bash
+# 1. 允许任何来源的应用
+sudo spctl --master-disable
+# 2. 移除隔离属性
+sudo xattr -rd com.apple.quarantine /Applications/RsClaw.app
+```
+:::
+
+---
+
+## CLI 命令行安装
 
 ### 一键安装
 
@@ -21,10 +57,10 @@ $env:GITHUB_PROXY="https://gitfast.run"; irm https://app.rsclaw.ai/scripts/insta
 
 ```bash
 # 安装指定版本
-curl -fsSL .../install.sh | bash -s -- --version v2026.4.1-beta
+curl -fsSL .../install.sh | bash -s -- --version v2026.4.13
 
 # 安装到自定义目录
-curl -fsSL .../install.sh | bash -s -- --prefix /opt/rsclaw/bin
+curl -fsSL .../install.sh | bash -s -- --prefix /usr/local/bin
 ```
 
 ### 支持平台
@@ -33,8 +69,8 @@ curl -fsSL .../install.sh | bash -s -- --prefix /opt/rsclaw/bin
 |------|------|------|
 | macOS | ARM64 (Apple Silicon) | 完全支持 |
 | macOS | x86_64 (Intel) | 完全支持 |
-| Linux | x86_64 | 完全支持（musl 静态链接） |
-| Linux | ARM64 | 完全支持（musl 静态链接） |
+| Linux | x86_64 | 完全支持 |
+| Linux | ARM64 | 完全支持 |
 | Windows | x86_64 | 完全支持 |
 | Windows | ARM64 | 完全支持 |
 

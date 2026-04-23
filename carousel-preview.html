@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RsClaw 控制台预览 — 轮播效果预览</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1b1b1f;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #e8590c 30%, #f76707);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    /* ── Carousel ── */
+    .carousel-wrapper {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .carousel {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,.4), 0 0 0 1px rgba(232,89,12,.18);
+      background: #111;
+      aspect-ratio: 16 / 10;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .6s ease;
+    }
+    .slide.active { opacity: 1; }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50%;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      opacity: 0;
+      transition: opacity .3s, background .3s;
+    }
+    .carousel:hover .arrow { opacity: 1; }
+    .arrow:hover { background: rgba(232,89,12,.75); }
+    .arrow.prev { left: 14px; }
+    .arrow.next { right: 14px; }
+
+    /* Dots */
+    .dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      cursor: pointer;
+      border: none;
+      transition: background .3s, transform .3s;
+    }
+    .dot.active {
+      background: #e8590c;
+      transform: scale(1.3);
+    }
+
+    /* Caption */
+    .caption {
+      text-align: center;
+      color: #888;
+      font-size: 0.875rem;
+      margin-top: 14px;
+      min-height: 1.4em;
+    }
+
+    /* Note */
+    .note {
+      margin-top: 40px;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(232,89,12,.3);
+      background: rgba(232,89,12,.05);
+      max-width: 900px;
+      width: 100%;
+      font-size: 0.875rem;
+      color: #aaa;
+      line-height: 1.7;
+    }
+    .note strong { color: #e8590c; }
+  </style>
+</head>
+<body>
+
+<h1>RsClaw 控制台预览</h1>
+<p class="subtitle">以下为主页轮播效果演示</p>
+
+<div class="carousel-wrapper">
+  <div class="carousel" id="carousel">
+
+    <div class="slide active">
+      <img src="public/screenshot-1.png" alt="控制台总览">
+    </div>
+    <div class="slide">
+      <img src="public/screenshot-2.png" alt="智能体管理">
+    </div>
+    <div class="slide">
+      <img src="public/screenshot-3.png" alt="消息通道">
+    </div>
+
+    <button class="arrow prev" id="prev">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="arrow next" id="next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="dots" id="dots"></div>
+  </div>
+  <p class="caption" id="caption"></p>
+</div>
+
+<div class="note">
+  <strong>提示：</strong> 这是轮播布局的预览页面。当前图片为占位图，请在终端中运行项目根目录下的
+  <strong>copy-screenshots.sh</strong> 脚本（或手动把 1.png / 2.png / 3.png 重命名后放入 <strong>public/</strong> 文件夹）来替换为真实截图。
+</div>
+
+<script>
+  const captions = [
+    '控制台总览 — 实时日志、通道状态一目了然',
+    '智能体管理 — 灵活配置多智能体协作',
+    '消息通道 — 一键接入 Telegram、飞书、钉钉、微信',
+  ];
+
+  const slides = document.querySelectorAll('.slide');
+  const dotsEl = document.getElementById('dots');
+  const captionEl = document.getElementById('caption');
+  let current = 0;
+  let timer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    captionEl.textContent = captions[current];
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+
+  goTo(0);
+</script>
+</body>
+</html>

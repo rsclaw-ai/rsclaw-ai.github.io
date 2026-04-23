@@ -1,6 +1,42 @@
 # Installation
 
-## Pre-built Binaries (Recommended)
+## Desktop App (Recommended)
+
+The desktop app includes GUI + CLI, ready to use out of the box with no environment setup.
+
+### Download & Install
+
+Visit the [Download page](/en/download) to get the installer for your platform:
+
+| Platform | Format | Notes |
+|----------|--------|-------|
+| macOS | `.dmg` | Drag to Applications folder |
+| Windows | `.msi` | Double-click to install, auto-adds to PATH |
+| Linux | `.deb` | `sudo dpkg -i rsclaw_*.deb` |
+
+### First Launch
+
+1. Open the RsClaw desktop app
+2. Configure an AI model provider (select Qwen, DeepSeek, OpenAI, etc. and enter API Key)
+3. Connect a messaging channel (WeChat / Feishu QR login, or configure Telegram, Discord, etc.)
+
+::: warning Windows Users
+SmartScreen may show a blue "Windows protected your PC" warning. Click **"More info"** → **"Run anyway"** to proceed.
+:::
+
+::: warning macOS Users
+The app is not Apple-signed yet. If macOS says it's "damaged", run in Terminal:
+```bash
+# 1. Allow apps from anywhere
+sudo spctl --master-disable
+# 2. Remove quarantine attribute
+sudo xattr -rd com.apple.quarantine /Applications/RsClaw.app
+```
+:::
+
+---
+
+## CLI Installation
 
 ### One-Line Install
 
@@ -20,10 +56,10 @@ Options:
 
 ```bash
 # Install specific version
-curl -fsSL .../install.sh | bash -s -- --version v2026.4.1-beta
+curl -fsSL .../install.sh | bash -s -- --version v2026.4.13
 
 # Install to custom directory
-curl -fsSL .../install.sh | bash -s -- --prefix /opt/rsclaw/bin
+curl -fsSL .../install.sh | bash -s -- --prefix /usr/local/bin
 ```
 
 ### Supported Platforms
@@ -32,8 +68,8 @@ curl -fsSL .../install.sh | bash -s -- --prefix /opt/rsclaw/bin
 |----------|-------------|--------|
 | macOS | ARM64 (Apple Silicon) | Fully supported |
 | macOS | x86_64 (Intel) | Fully supported |
-| Linux | x86_64 | Fully supported (musl, static binary) |
-| Linux | ARM64 | Fully supported (musl, static binary) |
+| Linux | x86_64 | Fully supported |
+| Linux | ARM64 | Fully supported |
 | Windows | x86_64 | Fully supported |
 | Windows | ARM64 | Fully supported |
 
@@ -64,7 +100,7 @@ cd rsclaw
 cargo build --release
 ```
 
-The binary is at `./target/release/rsclaw` (~12MB with LTO + strip).
+The binary is at `./target/release/rsclaw` (~15MB with LTO + strip).
 
 ### Optional Features
 

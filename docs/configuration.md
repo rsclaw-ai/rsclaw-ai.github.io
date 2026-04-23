@@ -13,44 +13,317 @@ RsClaw 使用 [JSON5](https://json5.org/) 格式，支持注释、尾逗号和�
 
 ## 配置示例
 
+以下是完整的默认配置模板（源文件：[`examples/default.rsclaw.json5`](https://github.com/rsclaw-ai/rsclaw/blob/main/examples/default.rsclaw.json5)）。所有段落都是可选的，按需取消注释即可。
+
 ```json5
+// rsclaw.json5 — Default configuration template
+// All sections are optional. Uncomment and modify as needed.
+// JSON5 syntax: comments, trailing commas, unquoted keys.
+// Environment variables: ${VAR} syntax supported in string fields.
+// Secrets: use { source: "env", id: "VAR" } for sensitive values.
 {
+  // =================================================================
+  // GATEWAY — HTTP server, networking, authentication
+  // =================================================================
   gateway: {
-    port: 18888,
-    bind: "loopback",   // "loopback" 或 "0.0.0.0"
+    port: 18888,                    // TCP port (default: 18888)
+    bind: "loopback",               // "loopback", "all", "custom", or IP address
+    // bindAddress: "192.168.1.100", // Custom IP (when bind is "custom" or IP)
+    language: "Chinese",            // Default: "English". Options: Chinese, Japanese, Korean, etc.
+    processingTimeout: 60,          // Seconds before "Processing..." indicator (0=disabled)
+    // auth: {
+    //   mode: "token",
+    //   token: "${RSCLAW_AUTH_TOKEN}",  // Or: { source: "env", id: "RSCLAW_AUTH_TOKEN" }
+    // },
   },
 
+  // =================================================================
+  // MODELS — LLM provider registry
+  // =================================================================
   models: {
     providers: {
-      qwen: {
-        apiKey: "${DASHSCOPE_API_KEY}",  // 环境变量替换
-        baseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1",
-      },
-      openai: {
-        apiKey: "${OPENAI_API_KEY}",
-      },
+      // anthropic: {
+      //   apiKey: "${ANTHROPIC_API_KEY}",
+      // },
+      // openai: {
+      //   apiKey: "${OPENAI_API_KEY}",
+      // },
+      // ollama: {
+      //   api: "ollama",
+      //   baseUrl: "http://localhost:11434/v1",
+      //   apiKey: "ollama",
+      // },
+
+      // === 国产大模型配置示例 ===
+      // DeepSeek (https://platform.deepseek.com)
+      // deepseek: {
+      //   baseUrl: "https://api.deepseek.com/v1",
+      //   apiKey: "${DEEPSEEK_API_KEY}",
+      //   models: [
+      //     { id: "deepseek-chat", maxTokens: 8192, contextWindow: 64000 },
+      //     { id: "deepseek-reasoner", maxTokens: 8192, contextWindow: 64000 },
+      //   ],
+      // },
+
+      // 阿里云通义千问 (https://dashscope.console.aliyun.com)
+      // qwen: {
+      //   baseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      //   apiKey: "${DASHSCOPE_API_KEY}",
+      //   models: [
+      //     { id: "qwen-turbo", maxTokens: 6144, contextWindow: 131072 },
+      //     { id: "qwen-plus", maxTokens: 6144, contextWindow: 131072 },
+      //     { id: "qwen-max", maxTokens: 6144, contextWindow: 32768 },
+      //     { id: "qwen-long", maxTokens: 6144, contextWindow: 1048576 },
+      //   ],
+      // },
+
+      // 月之暗面 Kimi (https://platform.moonshot.cn)
+      // kimi: {
+      //   baseUrl: "https://api.moonshot.cn/v1",
+      //   apiKey: "${MOONSHOT_API_KEY}",
+      //   models: [
+      //     { id: "moonshot-v1-8k", maxTokens: 4096, contextWindow: 8192 },
+      //     { id: "moonshot-v1-32k", maxTokens: 4096, contextWindow: 32768 },
+      //     { id: "moonshot-v1-128k", maxTokens: 4096, contextWindow: 131072 },
+      //   ],
+      // },
+
+      // 智谱 GLM (https://open.bigmodel.cn)
+      // zhipu: {
+      //   baseUrl: "https://open.bigmodel.cn/api/paas/v4",
+      //   apiKey: "${ZHIPU_API_KEY}",
+      //   models: [
+      //     { id: "glm-4", maxTokens: 4096, contextWindow: 131072 },
+      //     { id: "glm-4-flash", maxTokens: 4096, contextWindow: 131072 },
+      //   ],
+      // },
+
+      // 零一万物 (https://platform.lingyiwanwu.com)
+      // yi: {
+      //   baseUrl: "https://api.lingyiwanwu.com/v1",
+      //   apiKey: "${YI_API_KEY}",
+      //   models: [
+      //     { id: "yi-lightning", maxTokens: 4096, contextWindow: 16384 },
+      //   ],
+      // },
+
+      // MiniMax (https://www.minimaxi.com)
+      // minimax: {
+      //   baseUrl: "https://api.minimax.chat/v1",
+      //   apiKey: "${MINIMAX_API_KEY}",
+      //   models: [
+      //     { id: "abab6.5s-chat", maxTokens: 2048, contextWindow: 245000 },
+      //   ],
+      // },
+
+      // SiliconFlow 硅基流动 (https://cloud.siliconflow.cn)
+      // siliconflow: {
+      //   baseUrl: "https://api.siliconflow.cn/v1",
+      //   apiKey: "${SILICONFLOW_API_KEY}",
+      //   models: [
+      //     { id: "deepseek-ai/DeepSeek-V3", maxTokens: 8192, contextWindow: 64000 },
+      //     { id: "Qwen/Qwen2.5-72B-Instruct", maxTokens: 8192, contextWindow: 131072 },
+      //   ],
+      // },
+
+      // 自定义 OpenAI 兼容 API
+      // custom: {
+      //   api: "openai-completions",
+      //   baseUrl: "https://api.example.com/v1",
+      //   apiKey: "${CUSTOM_API_KEY}",
+      // },
     },
   },
 
+  // =================================================================
+  // AGENTS — Agent definitions
+  // =================================================================
   agents: {
     defaults: {
-      model: { primary: "qwen/qwen-turbo" },
-      thinking: { level: "medium" },
+      compaction: {
+        mode: "layered",            // "default", "safeguard", "layered"
+        keepRecentPairs: 5,
+        extractFacts: true,
+      },
+      // heartbeat: {
+      //   enabled: true,            // Global on/off for heartbeat scanning (default: true)
+      // },                          // Interval/active_hours configured in HEARTBEAT*.md frontmatter
+      // memory: {
+      //   enabled: true,            // Enable per-agent memory (default: true)
+      //   autoCapture: true,        // Auto-capture facts from conversations
+      //   autoRecall: true,         // Auto-recall relevant memories each turn
+      //   enableManagementTools: true, // Expose memory_search/memory_put/memory_delete tools
+      //   recallTopK: 10,           // Per-backend recall count before fusion
+      //   recallFinalK: 5,          // Final results after fusion
+      //   // scope: {
+      //   //   default: "agent",     // Default scope for new memories
+      //   // },
+      // },
+      // model: {
+      //   primary: "anthropic/claude-sonnet-4-20250514",
+      // },
+      // timeoutSeconds: 600,
+      // workspace: "~/.rsclaw/workspace",
     },
+    list: [
+      {
+        id: "main",
+        default: true,
+        model: {
+          primary: "anthropic/claude-sonnet-4-20250514",
+          toolset: "full",          // "minimal" (6), "standard" (12), "full" (all)
+        },
+        workspace: "~/.rsclaw/workspace",
+        // system: "You are a helpful assistant.",
+        // channels: [],             // Empty = all channels. ["telegram"] = only telegram.
+      },
+      // {
+      //   id: "researcher",
+      //   model: { primary: "anthropic/claude-sonnet-4-20250514", toolset: "minimal" },
+      //   system: "You are a research assistant.",
+      //   channels: ["telegram"],
+      // },
+    ],
+    // External agents (A2A cross-machine collaboration)
+    // external: [
+    //   {
+    //     id: "remote_agent",
+    //     url: "http://192.168.0.100:18888",
+    //     authToken: "${REMOTE_AUTH_TOKEN}",
+    //     // remoteAgentId: "main",   // Target specific remote agent
+    //   },
+    // ],
   },
 
+  // =================================================================
+  // CHANNELS — Messaging platform connections
+  // =================================================================
   channels: {
-    telegram: { botToken: "${TELEGRAM_BOT_TOKEN}" },
-    feishu: { appId: "xxx", appSecret: "xxx" },
+    // telegram: {
+    //   botToken: "${TELEGRAM_BOT_TOKEN}",
+    //   dmPolicy: "open",           // "open", "pairing", "allowlist", "disabled"
+    //   groupPolicy: "allowlist",
+    // },
+    // feishu: {
+    //   appId: "cli_xxx",
+    //   appSecret: "${FEISHU_APP_SECRET}",
+    //   brand: "feishu",            // "feishu" or "lark"
+    //   connectionMode: "websocket",
+    //   dmPolicy: "pairing",
+    //   groupPolicy: "allowlist",
+    // },
+    // dingtalk: {
+    //   appKey: "xxx",
+    //   appSecret: "${DINGTALK_APP_SECRET}",
+    //   dmPolicy: "pairing",
+    //   groupPolicy: "allowlist",
+    // },
+    // wechat: {
+    //   botId: "xxx@im.bot",
+    //   botToken: "${WECHAT_BOT_TOKEN}",
+    //   dmPolicy: "pairing",
+    //   groupPolicy: "allowlist",
+    // },
+    // wecom: {
+    //   botId: "xxx",
+    //   secret: "${WECOM_SECRET}",
+    //   dmPolicy: "pairing",
+    //   groupPolicy: "open",
+    // },
+    // discord: {
+    //   token: "${DISCORD_BOT_TOKEN}",
+    //   dmPolicy: "allowlist",
+    // },
+    // slack: {
+    //   botToken: "${SLACK_BOT_TOKEN}",
+    //   appToken: "${SLACK_APP_TOKEN}",
+    //   dmPolicy: "allowlist",
+    // },
+    // matrix: {
+    //   homeserver: "https://matrix.org",
+    //   accessToken: "${MATRIX_ACCESS_TOKEN}",
+    //   userId: "@bot:matrix.org",
+    //   deviceId: "xxx",
+    // },
   },
 
+  // =================================================================
+  // TOOLS — Tool configuration
+  // =================================================================
   tools: {
-    exec: { safety: true },
-    upload: {
-      max_file_size: 50000000,    // 50MB
-      max_text_chars: 50000,
+    exec: {
+      safety: false,              // Enable exec safety rules
     },
+    upload: {
+      maxFileSize: 52428800,      // 50MB
+      maxTextChars: 20000,
+    },
+    webSearch: {
+      // provider: "bing-free",   // "bing-free", "duckduckgo", "google", "bing", "brave"
+      // braveApiKey: "${BRAVE_API_KEY}",
+      // googleApiKey: "${GOOGLE_API_KEY}",
+      // googleCx: "search-engine-id",
+      // bingApiKey: "${BING_API_KEY}",
+    },
+    // webBrowser: {
+    //   headed: false,             // true = visible window, false = headless (default)
+    //   profile: "rsclaw",         // Chrome profile: "default" = system profile, "rsclaw" = isolated
+    //                              // Unset = temporary profile (no cookies/history)
+    //   // chromePath: "/path/to/chrome",  // Auto-detected if not set
+    // },
   },
+
+  // =================================================================
+  // MEMORY — Long-term memory (top-level)
+  // =================================================================
+  memory: {
+    // enabled: true,               // Enable memory system (default: true)
+    // provider: "local",           // Embedding provider: "local", "openai", "ollama"
+    recallTopK: 10,               // Results per backend (vector/BM25) before fusion
+    recallFinalK: 5,              // Final results after RRF fusion
+    // search: {
+    //   model: "bge-small-zh",    // Embedding model name
+    //   maxResults: 10,           // Max search results
+    // },
+  },
+
+  // =================================================================
+  // MEMORY SEARCH — Embedding configuration
+  // =================================================================
+  // memorySearch: {
+  //   provider: "local",           // "local", "openai", "gemini", "voyage", "ollama"
+  //   model: "bge-small-zh",       // Embedding model name
+  //   // sources: ["memory"],      // What to index: "memory", "sessions"
+  //   // baseUrl: "http://localhost:11434/v1",  // Custom embedding API URL
+  //   // apiKey: "${EMBEDDING_API_KEY}",        // API key for cloud embedding
+  //   // local: {
+  //   //   modelPath: "~/.rsclaw/models/bge-small-zh",  // Path to local GGUF model
+  //   //   modelRepo: "BAAI/bge-small-zh-v1.5",         // HuggingFace repo name
+  //   //   modelDownloadUrl: "https://hf-mirror.com",    // Download mirror (auto: hf-mirror.com for zh)
+  //   // },
+  // },
+
+  // =================================================================
+  // CRON — Scheduled jobs (also see cron/jobs.json)
+  // =================================================================
+  // cron: {
+  //   enabled: true,
+  //   maxConcurrentRuns: 2,
+  // },
+
+  // =================================================================
+  // SESSION — Conversation persistence
+  // =================================================================
+  // session: {
+  //   dmScope: "per-channel-peer",  // "main", "per-peer", "per-channel-peer", "per-account-channel-peer"
+  // },
+
+  // =================================================================
+  // LOGGING
+  // =================================================================
+  // logging: {
+  //   level: "info",               // "trace", "debug", "info", "warn", "error"
+  // },
 }
 ```
 
