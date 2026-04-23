@@ -77,51 +77,84 @@ export default defineConfig({
               items: [
                 { text: '快速开始', link: '/docs/getting-started' },
                 { text: '安装指南', link: '/docs/installation' },
-                { text: 'OpenClaw 迁移', link: '/docs/migration' },
-              ]
+                { text: '从 OpenClaw 迁移', link: '/docs/migration' },
+              ],
             },
             {
               text: '配置',
               items: [
                 { text: '配置参考', link: '/docs/configuration' },
-                { text: '消息通道', link: '/docs/channels' },
-                { text: 'LLM 提供商', link: '/docs/providers' },
-              ]
+                { text: '渠道配置', link: '/docs/channels' },
+                { text: '模型提供商', link: '/docs/model-providers' },
+              ],
             },
             {
               text: '功能',
               items: [
-                { text: '内置工具', link: '/docs/tools' },
-                { text: '安全机制', link: '/docs/security' },
-                { text: '预解析命令', link: '/docs/commands' },
-              ]
+                { text: '工具系统', link: '/docs/tools' },
+                { text: '安全设置', link: '/docs/security' },
+                { text: '命令系统', link: '/docs/commands' },
+              ],
+            },
+            {
+              text: '高级功能',
+              items: [
+                { text: '智能体管理', link: '/docs/agents' },
+                { text: '记忆系统', link: '/docs/memory' },
+                { text: 'Skills 系统', link: '/docs/skills' },
+                { text: '插件管理', link: '/docs/plugins' },
+                { text: '定时任务', link: '/docs/cron' },
+                { text: 'Webhook', link: '/docs/webhooks' },
+              ],
+            },
+            {
+              text: '帮助',
+              items: [
+                { text: '故障排查', link: '/docs/troubleshooting' },
+                { text: '常见问题 FAQ', link: '/docs/faq' },
+              ],
             },
           ],
           '/api/': [
             {
-              text: 'API',
+              text: 'API 文档',
               items: [
-                { text: '概览', link: '/api/' },
                 { text: 'REST API', link: '/api/rest' },
                 { text: 'WebSocket', link: '/api/websocket' },
-              ]
+              ],
             },
           ],
           '/cli/': [
             {
-              text: 'CLI 参考',
+              text: 'CLI 文档',
               items: [
-                { text: '概览', link: '/cli/' },
-              ]
+                { text: 'CLI 命令', link: '/cli/commands' },
+              ],
             },
           ],
         },
       },
     },
-    en: {
+    '/en': {
       label: 'English',
       lang: 'en-US',
       themeConfig: {
+        outline: { label: 'On this page' },
+        darkModeSwitchLabel: 'Theme',
+        lightModeSwitchTitle: 'Switch to light theme',
+        darkModeSwitchTitle: 'Switch to dark theme',
+        returnToTopLabel: 'Back to top',
+        lastUpdatedText: 'Last updated',
+        sidebarMenuLabel: 'Menu',
+        langMenuLabel: 'Switch language',
+        docFooter: {
+          prev: 'Previous page',
+          next: 'Next page',
+        },
+        editLink: {
+          pattern: 'https://github.com/rsclaw-ai/rsclaw-ai.github.io/edit/main/:path',
+          text: 'Edit this page on GitHub',
+        },
         nav: [
           { text: 'Docs', link: '/en/docs/getting-started' },
           { text: 'API', link: '/en/api/' },
@@ -136,77 +169,63 @@ export default defineConfig({
               items: [
                 { text: 'Quick Start', link: '/en/docs/getting-started' },
                 { text: 'Installation', link: '/en/docs/installation' },
-                { text: 'Migration from OpenClaw', link: '/en/docs/migration' },
-              ]
+                { text: 'Migrate from OpenClaw', link: '/en/docs/migration' },
+              ],
             },
             {
               text: 'Configuration',
               items: [
-                { text: 'Config Reference', link: '/en/docs/configuration' },
+                { text: 'Configuration Reference', link: '/en/docs/configuration' },
                 { text: 'Channels', link: '/en/docs/channels' },
-                { text: 'LLM Providers', link: '/en/docs/providers' },
-              ]
+                { text: 'Model Providers', link: '/en/docs/model-providers' },
+              ],
             },
             {
               text: 'Features',
               items: [
-                { text: 'Built-in Tools', link: '/en/docs/tools' },
+                { text: 'Tools', link: '/en/docs/tools' },
                 { text: 'Security', link: '/en/docs/security' },
-                { text: 'Pre-parsed Commands', link: '/en/docs/commands' },
-              ]
+                { text: 'Commands', link: '/en/docs/commands' },
+              ],
+            },
+            {
+              text: 'Advanced',
+              items: [
+                { text: 'Agents', link: '/en/docs/agents' },
+                { text: 'Memory', link: '/en/docs/memory' },
+                { text: 'Skills', link: '/en/docs/skills' },
+                { text: 'Plugins', link: '/en/docs/plugins' },
+                { text: 'Cron Jobs', link: '/en/docs/cron' },
+                { text: 'Webhooks', link: '/en/docs/webhooks' },
+              ],
+            },
+            {
+              text: 'Help',
+              items: [
+                { text: 'Troubleshooting', link: '/en/docs/troubleshooting' },
+                { text: 'FAQ', link: '/en/docs/faq' },
+              ],
             },
           ],
           '/en/api/': [
             {
               text: 'API Reference',
               items: [
-                { text: 'Overview', link: '/en/api/' },
                 { text: 'REST API', link: '/en/api/rest' },
-                { text: 'WebSocket Protocol', link: '/en/api/websocket' },
-              ]
+                { text: 'WebSocket', link: '/en/api/websocket' },
+              ],
             },
           ],
           '/en/cli/': [
             {
               text: 'CLI Reference',
               items: [
-                { text: 'Overview', link: '/en/cli/' },
-                { text: 'gateway', link: '/en/cli/gateway' },
-                { text: 'setup / onboard', link: '/en/cli/setup' },
-                { text: 'configure', link: '/en/cli/configure' },
-                { text: 'doctor', link: '/en/cli/doctor' },
-                { text: 'channels', link: '/en/cli/channels' },
-                { text: 'cron', link: '/en/cli/cron' },
-                { text: 'security', link: '/en/cli/security' },
-                { text: 'update', link: '/en/cli/update' },
-              ]
+                { text: 'CLI Commands', link: '/en/cli/commands' },
+              ],
             },
           ],
         },
       },
-    },
-  },
-
-  themeConfig: {
-    logo: '/rsclaw-logo.svg',
-    siteTitle: 'RsClaw',
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/rsclaw-ai/rsclaw' },
-    ],
-
-    search: {
-      provider: 'local'
-    },
-
-    footer: {
-      message: 'Released under MIT OR Apache-2.0 License',
-      copyright: 'Copyright 2026 RsClaw Contributors'
-    },
-
-    editLink: {
-      pattern: 'https://github.com/rsclaw-ai/rsclaw-ai.github.io/edit/main/:path',
-      text: 'Edit this page on GitHub'
     },
   },
 })
