@@ -593,18 +593,6 @@ onMounted(() => { detectPlatform(); fetchRelease() })
   </div>
 </div>
 
-<!-- macOS Security Tip (dynamic) -->
-<div v-if="!loading && isMacDownload" class="dl-tip">
-  <div class="dl-tip-box dl-tip-macos">
-    <span class="dl-tip-label">macOS 安装提示</span> — 首次打开桌面版可能提示"已损坏"，这是因为应用未经 Apple 签名。请在终端依次执行：
-    <span class="dl-tip-step">
-      <span class="dl-tip-step-num">1.</span> 允许任何来源应用：<code>sudo spctl --master-disable</code>
-    </span>
-    <span class="dl-tip-step">
-      <span class="dl-tip-step-num">2.</span> 移除隔离属性：<code>sudo xattr -rd com.apple.quarantine /Applications/RsClaw.app</code>
-    </span>
-  </div>
-</div>
 
 <!-- Windows Security Tip (dynamic) -->
 <div v-if="!loading && isWinDownload" class="dl-tip">

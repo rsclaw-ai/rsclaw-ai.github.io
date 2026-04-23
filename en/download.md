@@ -509,19 +509,6 @@ onMounted(() => { detectPlatform(); fetchRelease() })
   </div>
 </div>
 
-<!-- macOS Security Tip (dynamic) -->
-<div v-if="!loading && isMacDownload" class="dl-tip">
-  <div class="dl-tip-box dl-tip-macos">
-    <span class="dl-tip-label">macOS Installation Note</span> — The app is not Apple-signed yet. If macOS says it's "damaged", run these commands in Terminal:
-    <span class="dl-tip-step">
-      <span class="dl-tip-step-num">1.</span> Allow apps from anywhere: <code>sudo spctl --master-disable</code>
-    </span>
-    <span class="dl-tip-step">
-      <span class="dl-tip-step-num">2.</span> Remove quarantine: <code>sudo xattr -rd com.apple.quarantine /Applications/RsClaw.app</code>
-    </span>
-  </div>
-</div>
-
 <!-- Windows Security Tip (dynamic) -->
 <div v-if="!loading && isWinDownload" class="dl-tip">
   <div class="dl-tip-box dl-tip-win">
