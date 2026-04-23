@@ -673,14 +673,12 @@ onMounted(() => { detectPlatform(); fetchRelease() })
 <div v-if="!loading" class="dl-install" style="margin-top:28px">
   <div class="dl-install-box">
     <div class="dl-install-title">🔨 从源码编译</div>
-
-```bash
-# 需要 Rust 1.91+
+    <div class="dl-code-block" style="border-radius:10px;margin-top:12px">
+      <pre><code># 需要 Rust 1.91+
 git clone https://gitfast.run/https://github.com/rsclaw-ai/rsclaw.git
 cd rsclaw
-cargo build --release
-```
-
+cargo build --release</code></pre>
+    </div>
   </div>
 </div>
 
