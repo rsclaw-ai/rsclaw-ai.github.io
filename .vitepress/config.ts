@@ -94,6 +94,7 @@ export default defineConfig({
                 { text: '工具系统', link: '/docs/tools' },
                 { text: '安全设置', link: '/docs/security' },
                 { text: '命令系统', link: '/docs/commands' },
+                { text: '桌面自动化', link: '/docs/desktop' },
               ],
             },
             {
@@ -186,6 +187,7 @@ export default defineConfig({
                 { text: 'Tools', link: '/en/docs/tools' },
                 { text: 'Security', link: '/en/docs/security' },
                 { text: 'Commands', link: '/en/docs/commands' },
+                { text: 'Desktop Automation', link: '/en/docs/desktop' },
               ],
             },
             {
