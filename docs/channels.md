@@ -26,7 +26,7 @@ RsClaw 支持 13 个消息通道及自定义 Webhook。
 所有通道均支持：
 
 - **DM/群组策略**：open、pairing、allowlist、disabled
-- **配对码**：6 字符，1 小时有效期
+- **配对码**：8 位（格式：XXXX-XXXX），1 小时有效期
 - **文本分块**：代码块保护、长消息自动拆分
 - **消息重试**：指数退避
 - **流式模式**：off、partial、block、progress
@@ -63,7 +63,7 @@ rsclaw channels login wechat
 
 ## DM 配对
 
-`dmPolicy` 设为 `"pairing"`（推荐默认值）时，新用户需输入 6 位配对码（1 小时有效）：
+`dmPolicy` 设为 `"pairing"`（推荐默认值）时，新用户需输入 8 位配对码（格式：XXXX-XXXX）（1 小时有效）：
 
 ```bash
 # 生成配对码
