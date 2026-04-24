@@ -113,6 +113,7 @@ export default defineConfig({
               items: [
                 { text: '故障排查', link: '/docs/troubleshooting' },
                 { text: '常见问题 FAQ', link: '/docs/faq' },
+                { text: '桌面版手册', link: '/docs/help/desktop' },
               ],
             },
           ],
@@ -206,6 +207,7 @@ export default defineConfig({
               items: [
                 { text: 'Troubleshooting', link: '/en/docs/troubleshooting' },
                 { text: 'FAQ', link: '/en/docs/faq' },
+                { text: 'Desktop Manual', link: '/en/docs/help/desktop' },
               ],
             },
           ],
